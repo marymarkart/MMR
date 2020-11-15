@@ -10,10 +10,10 @@ public class Camel {
 
 
     public Camel() {
-        hydration = 10;
-        stamina = 10;
-        progress = 0;
-        enemy = -5;
+        this.hydration = 10;
+        this.stamina = 10;
+        this.progress = 0;
+        this.enemy = -5;
     }
 
     public int getHydration() {
@@ -28,46 +28,24 @@ public class Camel {
         this.enemy += 10;
     }
 
-    public void run(){
+    public int run(){
         number = rand.nextInt(20) + 5;
         progress += number;
         hydration -= 2;
         stamina -= 2;
         enemyMoves();
-        if (number <= 17 && number > 13){
-            //CamelModifier modify = new CamelModifier(hydration, stamina);
-            findOasis();
-        }
-        if (number == 13){
-            //CamelModifier modify = new CamelModifier(hydration, stamina);
-            sandstormHydrate();
-            sandstormStamina();
-        }
-        if (number == 10){
-            //CamelModifier modify = new CamelModifier(hydration, stamina);
-            cactusFlower();
-        }
+        return number;
 
     }
 
-    private void cactusFlower() {
-    }
 
-    private void sandstormStamina() {
-    }
-
-    private void sandstormHydrate() {
-    }
-
-    private void findOasis() {
-    }
-
-    public void walk(){
+    public int walk(){
         number = rand.nextInt(10) + 1;
         progress += number;
         hydration -= 1;
         stamina -= 1;
         enemyMoves();
+        return number;
     }
 
     public void hydrate(){

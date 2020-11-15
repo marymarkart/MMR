@@ -7,6 +7,8 @@ public class GameSystem {
         boolean win = false;
         String state = "";
         Camel camel = new Camel();
+        int status = 0;
+        CamelModifier modify = new CamelModifier();
         Scanner scan = new Scanner(System.in);
 
         while (!win && !lose){
@@ -14,9 +16,22 @@ public class GameSystem {
             System.out.println("Enter run, walk, hydrate, rest, quit");
             state = scan.nextLine();
             if (state.equals("run")){
-                camel.run();
+                status = camel.run();
                 lose = camel.gameOverLose();
                 win = camel.gameOverWin();
+                if (status <= 17 && status > 13){
+
+                    modify.findOasis(camel);
+                }
+                if (status == 13){
+                    //CamelModifier modify = new CamelModifier(hydration, stamina);
+                    modify.sandstormHydrate(camel);
+                    modify.sandstormStamina(camel);
+                }
+                if (status == 10){
+                    //CamelModifier modify = new CamelModifier(hydration, stamina);
+                    modify.cactusFlower(camel);
+                }
                 System.out.println(camel.getHydration()+ " "+ camel.getStamina()+ " "+ camel.getProgess() + " " + camel.getEnemy());
 
             }
