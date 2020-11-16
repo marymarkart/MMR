@@ -7,6 +7,9 @@ public class CamelModifier extends Camel {
 //    Camel camel = new Camel();
     int hydration;
     int stamina;
+    ImageIcon oasisIcon = new ImageIcon("images/oasis3.png");
+    ImageIcon sandstormIcon = new ImageIcon("images/sandstorm.gif");
+    ImageIcon cactusIcon = new ImageIcon("images/cactusFlower.png");
 
     public CamelModifier() {
         this.stamina = stamina;
@@ -19,9 +22,11 @@ public class CamelModifier extends Camel {
         camel.hydrate();
         JFrame oasis = new JFrame();
         oasis.setLayout(new FlowLayout());
-        oasis.setPreferredSize(new Dimension(400, 100));
+        oasis.setPreferredSize(new Dimension(400, 250));
         JLabel winText = new JLabel("You found an oasis! You're hydration has been restored!");
         oasis.add(winText);
+        JPanel oasisImg = new JPanel();
+        oasis.add(new JLabel(oasisIcon));
         JButton ok = new JButton("OK");
         oasis.add(ok);
         ok.addActionListener(new ActionListener() {
@@ -42,9 +47,10 @@ public class CamelModifier extends Camel {
         camel.hydration = camel.getHydration()/2;
         JFrame sandstorm = new JFrame();
         sandstorm.setLayout(new FlowLayout());
-        sandstorm.setPreferredSize(new Dimension(400, 100));
+        sandstorm.setPreferredSize(new Dimension(500, 200));
         JLabel winText = new JLabel("You got caught in a sandstorm. You're health and stamina have gone down!");
         sandstorm.add(winText);
+        sandstorm.add(new JLabel(sandstormIcon));
         JButton ok = new JButton("OK");
         sandstorm.add(ok);
         ok.addActionListener(new ActionListener() {
@@ -68,9 +74,10 @@ public class CamelModifier extends Camel {
         camel.rest();
         JFrame flower = new JFrame();
         flower.setLayout(new FlowLayout());
-        flower.setPreferredSize(new Dimension(400, 100));
+        flower.setPreferredSize(new Dimension(400, 250));
         JLabel winText = new JLabel("You found a Cactus Flower! You're stamina has been restored!");
         flower.add(winText);
+        flower.add(new JLabel(cactusIcon));
         JButton ok = new JButton("OK");
         flower.add(ok);
         ok.addActionListener(new ActionListener() {
