@@ -1,59 +1,61 @@
-import java.util.Random;
-import java.util.Scanner;
-
 public class GameSystem {
+    static String state = "";
+    Camel camel = new Camel();
     public static void main(String[] args) {
+        GameSystem game = new GameSystem();
+        StatsView stats = new StatsView(game.camel.getHydration(), game.camel.getStamina(),
+                game.camel.getProgess(), game.camel.getEnemy());
+        game.camel.attach(stats);
+        GameProgress gp = new GameProgress(game, state, game.camel, stats);
+
+    }
+    public void stateMachine() {
         boolean lose = false;
         boolean win = false;
-        String state = "";
-        Camel camel = new Camel();
         int status = 0;
         CamelModifier modify = new CamelModifier();
-        Scanner scan = new Scanner(System.in);
-
-        while (!win && !lose){
-
-            System.out.println("Enter run, walk, hydrate, rest, quit");
-            state = scan.nextLine();
-            if (state.equals("run")){
-                status = camel.run();
-                lose = camel.gameOverLose();
-                win = camel.gameOverWin();
-                if (status <= 17 && status > 13){
-
-                    modify.findOasis(camel);
-                }
-                if (status == 13){
-                    //CamelModifier modify = new CamelModifier(hydration, stamina);
-                    modify.sandstormHydrate(camel);
-                    modify.sandstormStamina(camel);
-                }
-                if (status == 10){
-                    //CamelModifier modify = new CamelModifier(hydration, stamina);
-                    modify.cactusFlower(camel);
-                }
-                System.out.println(camel.getHydration()+ " "+ camel.getStamina()+ " "+ camel.getProgess() + " " + camel.getEnemy());
-
+        if (state.equals("run")){
+            status = camel.run();
+            lose = camel.gameOverLose();
+            win = camel.gameOverWin();
+            if (status <= 17 && status > 13){
+                modify.findOasis(camel);
             }
-            else if (state.equals("walk")){
+            if (status == 13){
+                modify.sandstormHydrate(camel);
+                modify.sandstormStamina(camel);
+            }
+            if (status == 10){
+                modify.cactusFlower(camel);
+            }
+            System.out.println(camel.getHydration()+ " "+ camel.getStamina()+ " "+
+                    camel.getProgess() + " " + camel.getEnemy());
+        }
+        else if (state.equals("walk")){
                 camel.walk();
                 lose = camel.gameOverLose();
                 win = camel.gameOverWin();
-                System.out.println(camel.getHydration()+ " "+ camel.getStamina()+ " "+ camel.getProgess() + " " + camel.getEnemy());
+                System.out.println(camel.getHydration()+ " "+ camel.getStamina()+ " "+
+                        camel.getProgess() + " " + camel.getEnemy());
             }
             else if (state.equals("hydrate")){
                 camel.hydrate();
-                System.out.println(camel.getHydration()+ " "+ camel.getStamina()+ " "+ camel.getProgess() + " " + camel.getEnemy());
+                System.out.println(camel.getHydration()+ " "+ camel.getStamina()+ " "+
+                        camel.getProgess() + " " + camel.getEnemy());
 
             }
             else if (state.equals("rest")){
                 camel.rest();
-                System.out.println(camel.getHydration()+ " "+ camel.getStamina()+ " "+ camel.getProgess() + " " + camel.getEnemy());
+                System.out.println(camel.getHydration()+ " "+ camel.getStamina()+ " "+
+                        camel.getProgess() + " " + camel.getEnemy());
             }
             else if (state.equals("quit")) {
-                win = true;
-                lose = true;
+                System.out.println("Quit Game");
             }
-        }
     }
+
+    public void setTheState(String state) {
+        this.state = state;
+    }
+
 }

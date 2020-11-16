@@ -1,3 +1,4 @@
+import javax.swing.plaf.nimbus.State;
 import java.util.Random;
 
 public class Camel {
@@ -7,6 +8,7 @@ public class Camel {
     int enemy;
     Random rand = new Random();
     int number = 0;
+    StatsView sView;
 
 
     public Camel() {
@@ -34,7 +36,9 @@ public class Camel {
         hydration -= 2;
         stamina -= 2;
         enemyMoves();
+        updateValues(hydration, stamina, progress, enemy);
         return number;
+
 
     }
 
@@ -45,15 +49,18 @@ public class Camel {
         hydration -= 1;
         stamina -= 1;
         enemyMoves();
+        updateValues(hydration, stamina, progress, enemy);
         return number;
     }
 
     public void hydrate(){
         this.hydration = 10;
+        updateValues(hydration, stamina, progress, enemy);
     }
 
     public void rest(){
         this.stamina = 10;
+        updateValues(hydration, stamina, progress, enemy);
     }
 
 
@@ -87,6 +94,14 @@ public class Camel {
             return true;
         }
         return false;
+    }
+
+    public void attach(StatsView sView) {
+        this.sView = sView;
+    }
+
+    public void updateValues(int n1, int n2, int n3, int n4) {
+        sView.updateStats(n1, n2, n3, n4);
     }
 
 
