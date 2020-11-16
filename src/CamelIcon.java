@@ -7,11 +7,26 @@ public class CamelIcon extends JPanel {
     public Image still;
 
     public CamelIcon(){
-    ImageIcon i = new ImageIcon("resources/camel.png");
-    still = i.getImage();
-    x = 10;
-    nx2 = 640;
-    y =172;
+        ImageIcon camel1 = new ImageIcon("images/camel1.png");
+        ImageIcon camel2 = new ImageIcon("images/camel2.png");
+        ImageIcon camel3 = new ImageIcon("images/camel3.png");
+        ImageIcon camel4 = new ImageIcon("images/camel4.png");
+        ImageIcon camel5 = new ImageIcon("images/camel5.png");
+        ImageIcon camel6 = new ImageIcon("images/camel6.png");
+        ImageIcon camel7 = new ImageIcon("images/camel7.png");
+        ImageIcon camel8 = new ImageIcon("images/camel8.png");
+        ImageIcon camel9 = new ImageIcon("images/camel9.png");
+        ImageIcon camel10 = new ImageIcon("images/camel10.png");
+        ImageIcon camel11 = new ImageIcon("images/camel11.png");
+        ImageIcon camel12 = new ImageIcon("images/camel12.png");
+        ImageIcon camel13 = new ImageIcon("images/camel13.png");
+        ImageIcon camelrest1 = new ImageIcon("images/camelrest1.png");
+        ImageIcon camelrest2 = new ImageIcon("images/camelrest2.png");
+        ImageIcon camelrest = new ImageIcon("images/camelrest3.png");
+        still = camel1.getImage();
+        x = 20;
+        nx2 = 640;
+        y =260;
 }
 
     public void move(){

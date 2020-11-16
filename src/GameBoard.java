@@ -11,12 +11,12 @@ public class GameBoard extends JPanel implements ActionListener {
     Timer time;
 
     public GameBoard(){
-        addKeyListener(new AL());
+        //addKeyListener(new AL());
         setFocusable(true);
-        ImageIcon i = new ImageIcon("src/background.jpg");
+        ImageIcon i = new ImageIcon("images/background2.jpg");
         image = i.getImage();
-        time = new Timer(5, this);
-        time.start();
+        //time = new Timer(5, this);
+        //time.start();
     }
 
     public void actionPerformed(ActionEvent e){

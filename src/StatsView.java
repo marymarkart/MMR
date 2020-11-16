@@ -37,12 +37,14 @@ public class StatsView extends JPanel {
             int x4 = 10;
 
             //Rectangle for n1
+
             g2.setColor(Color.CYAN);
             Rectangle rec1 = new Rectangle(x1, 10, n1*10, 5);
             g2.draw(rec1);
             g2.fill(rec1);
 
             //Rectangle for n2
+
             g2.setColor(Color.GREEN);
             Rectangle rec2 = new Rectangle(x2, 20, n2*10, 5);
             g2.draw(rec2);
@@ -50,15 +52,16 @@ public class StatsView extends JPanel {
 
             //Rectangle for n3
             g2.setColor(Color.BLUE);
-            Rectangle rec3 = new Rectangle(x3, 30, n3, 5);
+            Rectangle rec3 = new Rectangle(x3, 30, (int) (n3*0.4), 5);
             g2.draw(rec3);
             g2.fill(rec3);
 
             //Rectangle for n3
+
             g2.setColor(Color.RED);
-            Rectangle rec4 = new Rectangle(x4, 40, n4, 5);
-            g2.draw(rec3);
-            g2.fill(rec3);
+            Rectangle rec4 = new Rectangle(x4, 40, (int) (n4*0.4), 5);
+            g2.draw(rec4);
+            g2.fill(rec4);
 
         }
 }

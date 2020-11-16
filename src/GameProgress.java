@@ -24,11 +24,10 @@ public class GameProgress extends JFrame implements ActionListener {
 
     public void run(){
         JFrame frame = new JFrame();
-        frame.setLayout(new BorderLayout());
-        frame.setPreferredSize(new Dimension(640, 640));
-        frame.add(new GameBoard(), BorderLayout.CENTER);
+        frame.setLayout(new GridBagLayout());
         frame.setTitle("Camel Game");
-
+        GridBagConstraints c = new GridBagConstraints();
+        frame.setPreferredSize(new Dimension(700, 400));
         JPanel menu = new JPanel();
         menu.setLayout(new GridLayout(5,1));
         menu.setPreferredSize(new Dimension(100, 100));
@@ -46,19 +45,57 @@ public class GameProgress extends JFrame implements ActionListener {
         rest.addActionListener(this);
         quit.addActionListener(this);
 
-        frame.add(menu, BorderLayout.WEST);
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 4;
+        c.ipady = 200;
+        c.gridx = 0;
+        c.gridy = 0;
+        frame.add(menu, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        JPanel statsView;
+        statsView = stats;
+        statsView.setLayout(new FlowLayout());
+        //statsView.setPreferredSize(new Dimension(100, 100));
+        statsView.setVisible(true);
+
+//        JPanel statNum = new JPanel();
+//        statNum.setLayout(new GridLayout(4,1));
+//        JLabel hyd = new JLabel("Hydration " + camel.getHydration() +"/10" );
+//        JLabel sta = new JLabel("Stamina " + camel.getStamina() +"/10" );
+//        JLabel pro = new JLabel("Progress " + camel.getProgess() +"/250" );
+//        JLabel enm = new JLabel("Enemy " + camel.getEnemy() +"/250" );
+//        statNum.add(hyd);
+//        statNum.add(sta);
+//        statNum.add(pro);
+//        statNum.add(enm);
+//        c.fill = GridBagConstraints.HORIZONTAL;
+//        c.ipady = 400;
+//        c.weightx = 2;
+//        c.gridx = 1;
+//        c.gridy = 0;
+//        frame.add(menu, c);
+
+        c.ipady = 200;
+        c.weightx = 2;
+        c.gridx = 0;
+        c.gridy = 1;
+        frame.add(stats, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.ipady = 400;      //make this component tall
+        c.weightx = 400.0;
+        c.gridheight = 400;
+        c.gridx = 2;
+        c.gridy = 0;
+        frame.add(new GameBoard(),c);
+
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
 
-        JPanel statsView;
-        statsView = stats;
-        statsView.setLayout(new FlowLayout());
-        statsView.setPreferredSize(new Dimension(100, 100));
-        statsView.setVisible(true);
-
-        frame.add(stats, BorderLayout.SOUTH);
 
     }
     public void actionPerformed(ActionEvent e) {
@@ -66,8 +103,8 @@ public class GameProgress extends JFrame implements ActionListener {
             this.state = "run";
             game.setTheState(state);
             game.stateMachine();
-            JPanel display = new JPanel();
-            display.setLayout(new FlowLayout());
+            //JPanel display = new JPanel();
+            //display.setLayout(new FlowLayout());
         }
         if (e.getSource() == walk) {
             this.state = "walk";
