@@ -14,6 +14,9 @@ public class GameProgress extends JFrame implements ActionListener {
     Camel camel;
     StatsView stats;
 
+    public GameProgress(){
+    }
+
     public GameProgress(GameSystem game, String state, Camel camel, StatsView stats) {
         this.state = state;
         this.game = game;
@@ -98,11 +101,37 @@ public class GameProgress extends JFrame implements ActionListener {
 
 
     }
+
+    public void winGame(){
+        JFrame win = new JFrame();
+        win.setLayout(new FlowLayout());
+        win.setPreferredSize(new Dimension(100, 100));
+        JLabel winText = new JLabel("YOU WIN!");
+        win.add(winText);
+        JButton ok = new JButton("End Game");
+        win.add(ok);
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        win.pack();
+        win.setVisible(true);
+        win.setLocationRelativeTo(null);
+    }
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == run) {
             this.state = "run";
             game.setTheState(state);
             game.stateMachine();
+            if (game.win == true){
+                winGame();
+            }
+
+
+            //moveCamelRun();
             //JPanel display = new JPanel();
             //display.setLayout(new FlowLayout());
         }

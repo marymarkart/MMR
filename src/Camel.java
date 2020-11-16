@@ -75,7 +75,6 @@ public class Camel {
     public boolean gameOverLose(){
         if (stamina <= 0){
             System.out.println("You ran out of stamina");
-            return true;
         }
         if (hydration <= 0){
             System.out.println("You ran out of water");

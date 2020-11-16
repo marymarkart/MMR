@@ -1,6 +1,8 @@
 public class GameSystem {
     static String state = "";
     Camel camel = new Camel();
+    boolean lose = false;
+    boolean win = false;
     public static void main(String[] args) {
         GameSystem game = new GameSystem();
         StatsView stats = new StatsView(game.camel.getHydration(), game.camel.getStamina(),
@@ -10,8 +12,6 @@ public class GameSystem {
 
     }
     public void stateMachine() {
-        boolean lose = false;
-        boolean win = false;
         int status = 0;
         CamelModifier modify = new CamelModifier();
         if (state.equals("run")){

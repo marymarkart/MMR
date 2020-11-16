@@ -9,17 +9,26 @@ public class GameBoard extends JPanel implements ActionListener {
     CamelIcon p = new CamelIcon();
     public Image image;
     Timer time;
+    String camelMovement = "";
 
     public GameBoard(){
-        //addKeyListener(new AL());
+        time = new Timer(5, this);
+        time.start();
+        time.addActionListener(new AL());
         setFocusable(true);
         ImageIcon i = new ImageIcon("images/background2.jpg");
         image = i.getImage();
-        //time = new Timer(5, this);
-        //time.start();
+
     }
 
     public void actionPerformed(ActionEvent e){
+        if (camelMovement.equals("run")){
+            for (int i = 0; i < 26; i++){
+                p.getNextCamelRun();
+                repaint();
+            }
+            p.camelReset();
+        }
         p.move();
         repaint();
     }
@@ -32,16 +41,20 @@ public class GameBoard extends JPanel implements ActionListener {
         g2d.drawImage(p.getImage(), p.getX(), p.getY(), null);
     }
 
-    private class AL extends KeyAdapter {
-        @Override
-        public void keyReleased(KeyEvent e) {
-            super.keyReleased(e);
+    private class AL extends GameProgress {
+        String camelMovement = "";
+
+        public void keyReleased(ActionEvent e) {
+            if (e.getSource() == run){
+                camelMovement = "run";
+                p.move();
+            }
         }
 
-        @Override
-        public void keyPressed(KeyEvent e) {
-            super.keyPressed(e);
-        }
+//        @Override
+//        public void keyPressed(KeyEvent e) {
+//            super.keyPressed(e);
+//        }
     }
 }
 
