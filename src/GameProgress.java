@@ -129,7 +129,16 @@ public class GameProgress extends JFrame implements ActionListener {
             if (game.win == true){
                 winGame();
             }
-
+            if (game.lose == true) {
+                if (camel.getHydration() == 0 && camel.getStamina() == 0) {
+                    loseGameBoth();
+                } else if (camel.getHydration() == 0) {
+                    loseGameHydration();
+                } else if (camel.getStamina() == 0) {
+                    loseGameStamina();
+                } else
+                    loseGameEnemy();
+            }
 
             //moveCamelRun();
             //JPanel display = new JPanel();
@@ -155,5 +164,83 @@ public class GameProgress extends JFrame implements ActionListener {
             game.setTheState(state);
             game.stateMachine();
         }
+    }
+
+    private void loseGameBoth() {
+        JFrame lose1 = new JFrame();
+        lose1.setLayout(new FlowLayout());
+        lose1.setPreferredSize(new Dimension(400, 100));
+        JLabel winText = new JLabel("You have run out of water and stamina! You lose!");
+        lose1.add(winText);
+        JButton ok = new JButton("End Game");
+        lose1.add(ok);
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        lose1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        lose1.pack();
+        lose1.setVisible(true);
+        lose1.setLocationRelativeTo(null);
+    }
+
+    private void loseGameHydration() {
+        JFrame lose2 = new JFrame();
+        lose2.setLayout(new FlowLayout());
+        lose2.setPreferredSize(new Dimension(400, 100));
+        JLabel winText = new JLabel("You have run out of water! You Lose!");
+        lose2.add(winText);
+        JButton ok = new JButton("End Game");
+        lose2.add(ok);
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        lose2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        lose2.pack();
+        lose2.setVisible(true);
+        lose2.setLocationRelativeTo(null);
+    }
+    private void loseGameStamina() {
+        JFrame lose3 = new JFrame();
+        lose3.setLayout(new FlowLayout());
+        lose3.setPreferredSize(new Dimension(400, 100));
+        JLabel winText = new JLabel("You have run out of stamina! You lose!");
+        lose3.add(winText);
+        JButton ok = new JButton("End Game");
+        lose3.add(ok);
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        lose3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        lose3.pack();
+        lose3.setVisible(true);
+        lose3.setLocationRelativeTo(null);
+    }
+    private void loseGameEnemy() {
+        JFrame lose4 = new JFrame();
+        lose4.setLayout(new FlowLayout());
+        lose4.setPreferredSize(new Dimension(400, 100));
+        JLabel winText = new JLabel("The enemy has caught up to you! You lose!");
+        lose4.add(winText);
+        JButton ok = new JButton("End Game");
+        lose4.add(ok);
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        lose4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        lose4.pack();
+        lose4.setVisible(true);
+        lose4.setLocationRelativeTo(null);
     }
 }
