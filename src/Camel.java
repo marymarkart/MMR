@@ -1,4 +1,3 @@
-import javax.swing.plaf.nimbus.State;
 import java.util.Random;
 
 public class Camel {
@@ -55,11 +54,13 @@ public class Camel {
 
     public void hydrate(){
         this.hydration = 10;
+        this.enemy += 5;
         updateValues(hydration, stamina, progress, enemy);
     }
 
     public void rest(){
         this.stamina = 10;
+        this.enemy += 5;
         updateValues(hydration, stamina, progress, enemy);
     }
 

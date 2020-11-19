@@ -10,23 +10,28 @@ public class GameSystem {
         game.camel.attach(stats);
         GameProgress gp = new GameProgress(game, state, game.camel, stats);
 
+
     }
     public void stateMachine() {
         int status = 0;
         CamelModifier modify = new CamelModifier();
         if (state.equals("run")){
             status = camel.run();
+            System.out.println(status);
             lose = camel.gameOverLose();
             win = camel.gameOverWin();
-            if (status <= 17 && status > 13){
+            if (status == 17){
                 modify.findOasis(camel);
+                camel.updateValues(camel.getHydration(), camel.getStamina(), camel.getProgess(), camel.getEnemy());
             }
             if (status == 13){
                 modify.sandstormHydrate(camel);
                 modify.sandstormStamina(camel);
+                camel.updateValues(camel.getHydration(), camel.getStamina(), camel.getProgess(), camel.getEnemy());
             }
             if (status == 10){
                 modify.cactusFlower(camel);
+                camel.updateValues(camel.getHydration(), camel.getStamina(), camel.getProgess(), camel.getEnemy());
             }
             System.out.println(camel.getHydration()+ " "+ camel.getStamina()+ " "+
                     camel.getProgess() + " " + camel.getEnemy());
@@ -40,16 +45,21 @@ public class GameSystem {
             }
             else if (state.equals("hydrate")){
                 camel.hydrate();
+                lose = camel.gameOverLose();
+                win = camel.gameOverWin();
                 System.out.println(camel.getHydration()+ " "+ camel.getStamina()+ " "+
                         camel.getProgess() + " " + camel.getEnemy());
 
             }
             else if (state.equals("rest")){
                 camel.rest();
+                lose = camel.gameOverLose();
+                win = camel.gameOverWin();
                 System.out.println(camel.getHydration()+ " "+ camel.getStamina()+ " "+
                         camel.getProgess() + " " + camel.getEnemy());
             }
             else if (state.equals("quit")) {
+                System.exit(0);
                 System.out.println("Quit Game");
             }
     }

@@ -13,6 +13,13 @@ public class GameProgress extends JFrame implements ActionListener {
     String state;
     Camel camel;
     StatsView stats;
+    CamelIcon p =new CamelIcon();
+    String win = "YOU WIN!";
+    String dehydrate = "You have run out of water! You Lose!";
+    String lostStamina = "You have run out of stamina! You lose!";
+    String both = "You have run out of water and stamina! You lose!";
+    String enemyWins = "The enemy has caught up to you! You lose!";
+
 
     public GameProgress(){
     }
@@ -30,10 +37,11 @@ public class GameProgress extends JFrame implements ActionListener {
         frame.setLayout(new GridBagLayout());
         frame.setTitle("Camel Game");
         GridBagConstraints c = new GridBagConstraints();
-        frame.setPreferredSize(new Dimension(700, 400));
+        frame.setPreferredSize(new Dimension(500, 400));
         JPanel menu = new JPanel();
         menu.setLayout(new GridLayout(5,1));
         menu.setPreferredSize(new Dimension(100, 100));
+
 
 
         menu.add(run);
@@ -92,6 +100,7 @@ public class GameProgress extends JFrame implements ActionListener {
         c.gridx = 2;
         c.gridy = 0;
         frame.add(new GameBoard(),c);
+        //frame.add(p, c);
 
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,65 +108,122 @@ public class GameProgress extends JFrame implements ActionListener {
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
 
-
-    }
-
-    public void winGame(){
-        JFrame win = new JFrame();
-        win.setLayout(new FlowLayout());
-        win.setPreferredSize(new Dimension(100, 100));
-        JLabel winText = new JLabel("YOU WIN!");
-        win.add(winText);
-        JButton ok = new JButton("End Game");
-        win.add(ok);
+        JFrame rules = new JFrame();
+        rules.setLayout(new FlowLayout());
+        rules.setPreferredSize(new Dimension(400, 200));
+        rules.setTitle("Welcome to the Camel Game");
+        JLabel welcome = new JLabel("");
+        JLabel text = new JLabel("You are a camel who has escaped from bandits");
+        JLabel text1 = new JLabel("You must run through the desert to escape them");
+        JLabel text2 = new JLabel("You can run, but you will lose water(-2) and stamina(-1) and move forward 5-20 miles");
+        JLabel text3 = new JLabel("You can walk, but you will also lose water(-1) and stamina(-1) and move forward 1-10 miles");
+        JLabel text4 = new JLabel("You can hydrate or rest to restore health, but the enemy can still catch up to you");
+        JLabel text5 = new JLabel("Win the game by escaping the bandits through 250miles of desert, and not running out of water and stamina");
+        JLabel text6 = new JLabel("Good Luck!");
+        rules.add(welcome);
+        rules.add(text);
+        rules.add(text1);
+        rules.add(text2);
+        rules.add(text3);
+        rules.add(text4);
+        rules.add(text5);
+        rules.add(text6);
+        JButton ok = new JButton("Let's Play!");
+        rules.add(ok);
         ok.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                rules.dispose();
             }
         });
-        win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        win.pack();
-        win.setVisible(true);
-        win.setLocationRelativeTo(null);
+        rules.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        rules.pack();
+        rules.setVisible(true);
+        rules.setLocationRelativeTo(null);
+
+
     }
+
+
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == run) {
             this.state = "run";
             game.setTheState(state);
             game.stateMachine();
+            Timer time = new Timer(5, this);
+            for (int k = 0; k < 13; ++k){
+                //TODO
+            }
+            time.start();
+
+            p.repaint();
             if (game.win == true){
-                winGame();
+                gameMessage(win);
             }
             if (game.lose == true) {
                 if (camel.getHydration() == 0 && camel.getStamina() == 0) {
-                    loseGameBoth();
+                    gameMessage(both);
                 } else if (camel.getHydration() == 0) {
-                    loseGameHydration();
+                    gameMessage(dehydrate);
                 } else if (camel.getStamina() == 0) {
-                    loseGameStamina();
+                    gameMessage(lostStamina);
                 } else
-                    loseGameEnemy();
+                    gameMessage(enemyWins);
             }
-
-            //moveCamelRun();
-            //JPanel display = new JPanel();
-            //display.setLayout(new FlowLayout());
         }
         if (e.getSource() == walk) {
             this.state = "walk";
             game.setTheState(state);
             game.stateMachine();
+            if (game.win == true){
+                gameMessage(win);
+            }
+            if (game.lose == true) {
+                if (camel.getHydration() == 0 && camel.getStamina() == 0) {
+                    gameMessage(both);
+                } else if (camel.getHydration() == 0) {
+                    gameMessage(dehydrate);
+                } else if (camel.getStamina() == 0) {
+                    gameMessage(lostStamina);
+                } else
+                    gameMessage(enemyWins);
+            }
         }
         if (e.getSource() == hydrate) {
             this.state = "hydrate";
             game.setTheState(state);
             game.stateMachine();
+            if (game.win == true){
+                gameMessage(win);
+            }
+            if (game.lose == true) {
+                if (camel.getHydration() == 0 && camel.getStamina() == 0) {
+                    gameMessage(both);
+                } else if (camel.getHydration() == 0) {
+                    gameMessage(dehydrate);
+                } else if (camel.getStamina() == 0) {
+                    gameMessage(lostStamina);
+                } else
+                    gameMessage(enemyWins);
+            }
         }
         if (e.getSource() == rest) {
             this.state = "rest";
             game.setTheState(state);
             game.stateMachine();
+            if (game.win == true){
+                gameMessage(win);
+            }
+            if (game.lose == true) {
+                if (camel.getHydration() == 0 && camel.getStamina() == 0) {
+                    gameMessage(both);
+                } else if (camel.getHydration() == 0) {
+                    gameMessage(dehydrate);
+                } else if (camel.getStamina() == 0) {
+                    gameMessage(lostStamina);
+                } else
+                    gameMessage(enemyWins);
+            }
         }
         if (e.getSource() == quit) {
             this.state = "quit";
@@ -166,81 +232,23 @@ public class GameProgress extends JFrame implements ActionListener {
         }
     }
 
-    private void loseGameBoth() {
-        JFrame lose1 = new JFrame();
-        lose1.setLayout(new FlowLayout());
-        lose1.setPreferredSize(new Dimension(400, 100));
-        JLabel winText = new JLabel("You have run out of water and stamina! You lose!");
-        lose1.add(winText);
+    public void gameMessage (String message){
+        JFrame frame = new JFrame();
+        frame.setLayout(new FlowLayout());
+        frame.setPreferredSize(new Dimension(400, 100));
+        JLabel text = new JLabel(message);
+        frame.add(text);
         JButton ok = new JButton("End Game");
-        lose1.add(ok);
+        frame.add(ok);
         ok.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
-        lose1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        lose1.pack();
-        lose1.setVisible(true);
-        lose1.setLocationRelativeTo(null);
-    }
-
-    private void loseGameHydration() {
-        JFrame lose2 = new JFrame();
-        lose2.setLayout(new FlowLayout());
-        lose2.setPreferredSize(new Dimension(400, 100));
-        JLabel winText = new JLabel("You have run out of water! You Lose!");
-        lose2.add(winText);
-        JButton ok = new JButton("End Game");
-        lose2.add(ok);
-        ok.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        lose2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        lose2.pack();
-        lose2.setVisible(true);
-        lose2.setLocationRelativeTo(null);
-    }
-    private void loseGameStamina() {
-        JFrame lose3 = new JFrame();
-        lose3.setLayout(new FlowLayout());
-        lose3.setPreferredSize(new Dimension(400, 100));
-        JLabel winText = new JLabel("You have run out of stamina! You lose!");
-        lose3.add(winText);
-        JButton ok = new JButton("End Game");
-        lose3.add(ok);
-        ok.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        lose3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        lose3.pack();
-        lose3.setVisible(true);
-        lose3.setLocationRelativeTo(null);
-    }
-    private void loseGameEnemy() {
-        JFrame lose4 = new JFrame();
-        lose4.setLayout(new FlowLayout());
-        lose4.setPreferredSize(new Dimension(400, 100));
-        JLabel winText = new JLabel("The enemy has caught up to you! You lose!");
-        lose4.add(winText);
-        JButton ok = new JButton("End Game");
-        lose4.add(ok);
-        ok.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        lose4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        lose4.pack();
-        lose4.setVisible(true);
-        lose4.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 }

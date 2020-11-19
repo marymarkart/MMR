@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-public class CamelIcon extends JPanel {
+public class CamelIcon extends JPanel implements ActionListener {
     int x, dx, y, nx2;
     public Image still;
     int v = 0;
@@ -24,30 +26,40 @@ public class CamelIcon extends JPanel {
     ImageIcon camelrest = new ImageIcon("images/camelrest3.png");
     ImageIcon[] runArr = {camel1, camel2, camel3, camel4, camel5, camel6, camel7, camel8,
     camel9,camel10, camel11, camel12, camel13};
+    Timer t = new Timer(5, this);
 
     public CamelIcon(){
+        //setFocusable(true);
         still = camel1.getImage();
-        x = 20;
-        nx2 = 640;
-        y =260;
+        x = 150;
+        //nx2 = 640;
+        y =265;
 }
+    public CamelIcon(ImageIcon camel){
+        //setFocusable(true);
+        still = camel.getImage();
+        x = 150;
+        //nx2 = 640;
+        y =265;
+    }
+
 
     public void move(){
         x = x + dx;
         nx2 = nx2 + dx;
     }
-    public void moveCamelRun(){
-        for (int i = 1; i < runArr.length; i++){
-            this.still = runArr[i].getImage();
-            repaint();
-        }
-        for (int j = 1; j < runArr.length; j++){
-            this.still = runArr[j].getImage();
-            repaint();
-        }
-        this.still = runArr[0].getImage();
-        repaint();
-    }
+//    public void moveCamelRun(){
+//        for (int i = 1; i < runArr.length; i++){
+//            this.still = runArr[i].getImage();
+//            repaint();
+//        }
+//        for (int j = 1; j < runArr.length; j++){
+//            this.still = runArr[j].getImage();
+//            repaint();
+//        }
+//        this.still = runArr[0].getImage();
+//        repaint();
+//    }
 
     public int getX(){
         return x;
@@ -88,5 +100,36 @@ public class CamelIcon extends JPanel {
 
     public void camelReset() {
         still = camel1.getImage();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        for (int i = 1; i < runArr.length; i++){
+            this.still = runArr[i].getImage();
+            repaint();
+        }
+        for (int j = 1; j < runArr.length; j++){
+            this.still = runArr[j].getImage();
+            repaint();
+        }
+        this.still = runArr[0].getImage();
+        repaint();
+    }
+
+    public void drawCamel(Graphics g) {
+        super.paint(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(still, 150, 265 , null);
+    }
+    public void paintComponent(Graphics g) {
+        paintComponent(g);
+        for (int i = 1; i < runArr.length; i++){
+            drawCamel(g);
+        }
+        t.start();
+    }
+
+    public void runCamel() {
+
     }
 }

@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CamelModifier extends Camel {
-//    Camel camel = new Camel();
     int hydration;
     int stamina;
     ImageIcon oasisIcon = new ImageIcon("images/oasis3.png");
@@ -25,7 +24,6 @@ public class CamelModifier extends Camel {
         oasis.setPreferredSize(new Dimension(400, 250));
         JLabel winText = new JLabel("You found an oasis! You're hydration has been restored!");
         oasis.add(winText);
-        JPanel oasisImg = new JPanel();
         oasis.add(new JLabel(oasisIcon));
         JButton ok = new JButton("OK");
         oasis.add(ok);
