@@ -48,18 +48,18 @@ public class CamelIcon extends JPanel implements ActionListener {
         x = x + dx;
         nx2 = nx2 + dx;
     }
-//    public void moveCamelRun(){
-//        for (int i = 1; i < runArr.length; i++){
-//            this.still = runArr[i].getImage();
-//            repaint();
-//        }
-//        for (int j = 1; j < runArr.length; j++){
-//            this.still = runArr[j].getImage();
-//            repaint();
-//        }
-//        this.still = runArr[0].getImage();
-//        repaint();
-//    }
+    public void moveCamelRun(){
+        for (int i = 1; i < runArr.length; i++){
+            this.still = runArr[i].getImage();
+            repaint();
+        }
+        for (int j = 1; j < runArr.length; j++){
+            this.still = runArr[j].getImage();
+            repaint();
+        }
+        this.still = runArr[0].getImage();
+        repaint();
+    }
 
     public int getX(){
         return x;

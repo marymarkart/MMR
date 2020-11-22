@@ -8,6 +8,7 @@ public class Camel {
     Random rand = new Random();
     int number = 0;
     StatsView sView;
+    CamelIcon camelIcon = new CamelIcon();
 
 
     public Camel() {
@@ -35,6 +36,7 @@ public class Camel {
         hydration -= 2;
         stamina -= 2;
         enemyMoves();
+        camelIcon.moveCamelRun();
         updateValues(hydration, stamina, progress, enemy);
         return number;
 
