@@ -1,3 +1,5 @@
+import ProjectStarterCode.view.StatsView;
+
 import java.util.Random;
 
 public class Camel {

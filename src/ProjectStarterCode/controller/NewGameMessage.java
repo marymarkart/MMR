@@ -2,21 +2,7 @@ package ProjectStarterCode.controller;
 
 
 public class NewGameMessage implements Message {
-    runMessage(){
 
-    }
-    walkMessage(){
-
-    }
-    hydrateMessege(){
-
-    }
-    restMessage(){
-
-    }
-    quitMessage(){
-
-    }
 }
 
 

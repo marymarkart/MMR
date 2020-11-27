@@ -1,8 +1,15 @@
 package ProjectStarterCode.model;
 
-import java.util.Random;
 
-public class Camel {
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
+import ProjectStarterCode.view.StatsView;
+
+import javax.swing.*;
+
+public class Camel{
     int hydration;
     int stamina;
     int progress;
@@ -10,7 +17,9 @@ public class Camel {
     Random rand = new Random();
     int number = 0;
     StatsView sView;
-    CamelIcon camelIcon = new CamelIcon();
+    ImageIcon oasisIcon = new ImageIcon("images/oasis3.png");
+    ImageIcon sandstormIcon = new ImageIcon("images/sandstorm.gif");
+    ImageIcon cactusIcon = new ImageIcon("images/cactusFlower.png");
 
 
     public Camel() {
@@ -38,13 +47,12 @@ public class Camel {
         hydration -= 2;
         stamina -= 2;
         enemyMoves();
-        camelIcon.moveCamelRun();
+        //camelIcon.moveCamelRun();
         updateValues(hydration, stamina, progress, enemy);
         return number;
 
 
     }
-
 
     public int walk(){
         number = rand.nextInt(10) + 1;
@@ -101,6 +109,80 @@ public class Camel {
         return false;
     }
 
+    public void findOasis() {
+        System.out.print("You found an oasis");
+        hydrate();
+        JFrame oasis = new JFrame();
+        oasis.setLayout(new FlowLayout());
+        oasis.setPreferredSize(new Dimension(400, 250));
+        JLabel winText = new JLabel("You found an oasis! You're hydration has been restored!");
+        oasis.add(winText);
+        oasis.add(new JLabel(oasisIcon));
+        JButton ok = new JButton("OK");
+        oasis.add(ok);
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                oasis.dispose();
+            }
+        });
+        oasis.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        oasis.pack();
+        oasis.setVisible(true);
+        oasis.setLocationRelativeTo(null);
+    }
+
+
+    public void sandstormHydrate() {
+        System.out.println("You got caught in a sandstorm");
+        this.hydration = getHydration()/2;
+        JFrame sandstorm = new JFrame();
+        sandstorm.setLayout(new FlowLayout());
+        sandstorm.setPreferredSize(new Dimension(500, 200));
+        JLabel winText = new JLabel("You got caught in a sandstorm. You're health and stamina have gone down!");
+        sandstorm.add(winText);
+        sandstorm.add(new JLabel(sandstormIcon));
+        JButton ok = new JButton("OK");
+        sandstorm.add(ok);
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sandstorm.dispose();
+            }
+        });
+        sandstorm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        sandstorm.pack();
+        sandstorm.setVisible(true);
+        sandstorm.setLocationRelativeTo(null);
+    }
+
+    public void sandstormStamina() {
+        this.stamina = getStamina()/2;
+    }
+
+    public void cactusFlower() {
+        System.out.println("You found a special cactus flower");
+        rest();
+        JFrame flower = new JFrame();
+        flower.setLayout(new FlowLayout());
+        flower.setPreferredSize(new Dimension(400, 250));
+        JLabel winText = new JLabel("You found a Cactus Flower! You're stamina has been restored!");
+        flower.add(winText);
+        flower.add(new JLabel(cactusIcon));
+        JButton ok = new JButton("OK");
+        flower.add(ok);
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                flower.dispose();
+            }
+        });
+        flower.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        flower.pack();
+        flower.setVisible(true);
+        flower.setLocationRelativeTo(null);
+
+    }
     public void attach(StatsView sView) {
         this.sView = sView;
     }
@@ -121,3 +203,15 @@ public class Camel {
         return roundOver;
     }
 }
+class CamelIcon extends JPanel implements ActionListener {
+    int x, dx, y, nx2;
+    public Image still;
+    int v = 0;
+    Timer t = new Timer(5, this);
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+}
+

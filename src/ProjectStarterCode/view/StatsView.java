@@ -1,3 +1,5 @@
+package ProjectStarterCode.view;
+
 import javax.swing.*;
 import java.awt.*;
 
