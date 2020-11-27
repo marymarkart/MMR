@@ -140,8 +140,6 @@ public class GameProgress extends JFrame implements ActionListener {
         rules.pack();
         rules.setVisible(true);
         rules.setLocationRelativeTo(null);
-
-
     }
 
 
