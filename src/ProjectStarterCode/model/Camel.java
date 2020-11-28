@@ -99,28 +99,32 @@ public class Camel{
         return progress;
     }
 
-    public boolean gameOverLose(){
+    public int gameOverLose(){
+        if (stamina <= 0 && hydration <= 0){
+            System.out.println("You ran out of stamina and water");
+            return 1;
+        }
         if (stamina <= 0){
             System.out.println("You ran out of stamina");
-            return true;
+            return 2;
         }
         if (hydration <= 0){
             System.out.println("You ran out of water");
-            return true;
+            return 3;
         }
         if (enemy >= progress){
             System.out.println("The enemy caught you");
-            return true;
+            return 4;
         }
-        return false;
+        return 0;
     }
 
-    public boolean gameOverWin(){
-        if (progress >= 250){
+    public int gameOverWin(){
+        if (progress >= 250 && stamina > 0 && hydration > 0 && progress > enemy){
             System.out.println("You win");
-            return true;
+            return 1;
         }
-        return false;
+        return 0;
     }
 
     public void findOasis() {
@@ -228,6 +232,7 @@ public class Camel{
     public int getY() {
         return icon.y;
     }
+
 }
 class CamelIcon extends JPanel {
     int x, dx, y, nx2;
