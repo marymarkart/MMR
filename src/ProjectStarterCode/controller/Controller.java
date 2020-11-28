@@ -15,6 +15,7 @@ public class Controller {
     Message message;
 
     private List<Valve> valves = new LinkedList<Valve>();
+    private String action;
 
     public Controller(View view, Camel camel, BlockingQueue<Message> queue) {
         this.view = view;
@@ -33,8 +34,8 @@ public class Controller {
         this.message = null;
         while (response != ValveResponse.FINISH) {
             try {
-                updateGameInfo();
                 this.message = queue.take(); // <--- take next message from the queue
+                updateGameInfo();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -50,7 +51,25 @@ public class Controller {
     }
 
     private void updateGameInfo() {
-        gameInfo.GameInfo(message, camel);
+        gameInfo = new GameInfo();
+        if (message.getClass().equals(RunMessage.class)){
+            action = "run";
+        }
+        else if (message.getClass().equals(WalkMessage.class)){
+            action = "walk";
+        }
+        else if (message.getClass().equals(HydrateMessage.class)){
+            action = "hydrate";
+        }
+        else if (message.getClass().equals(RestMessage.class)){
+            action = "rest";
+        }
+        else if (message.getClass().equals(QuitMessage.class)){
+            action = "quit";
+        }
+        if (action != null) {
+            gameInfo.GameInfo(action, camel);
+        }
     }
 
     private interface Valve {

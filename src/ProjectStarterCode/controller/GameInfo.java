@@ -2,13 +2,19 @@ package ProjectStarterCode.controller;
 
 import ProjectStarterCode.model.Camel;
 
-public class GameInfo {
+public class GameInfo{
+    RunMessage run = new RunMessage();
+    WalkMessage walk = new WalkMessage();
+    RestMessage rest = new RestMessage();
+    HydrateMessage hydrateMessage = new HydrateMessage();
+    QuitMessage quitMessage = new QuitMessage();
 
     // the state of the Game/Application
     // information that is needed to repaint the View
-    public void GameInfo(Message message, Camel camel) {
+    public void GameInfo(String message, Camel camel) {
+
         int status = 0;
-        if (message.getClass() == RunMessage.class) {
+        if (message.equals("run")) {
             status = camel.run();
             System.out.println(status);
             camel.gameOverLose();
@@ -28,26 +34,26 @@ public class GameInfo {
             }
             System.out.println(camel.getHydration() + " " + camel.getStamina() + " " +
                     camel.getProgess() + " " + camel.getEnemy());
-        } else if (message.getClass() == WalkMessage.class) {
+        } else if (message.equals("walk")) {
             camel.walk();
             camel.gameOverLose();
             camel.gameOverWin();
             System.out.println(camel.getHydration() + " " + camel.getStamina() + " " +
                     camel.getProgess() + " " + camel.getEnemy());
-        } else if (message.getClass() == HydrateMessage.class) {
+        } else if (message.equals("hydrate")) {
             camel.hydrate();
             camel.gameOverLose();
             camel.gameOverWin();
             System.out.println(camel.getHydration() + " " + camel.getStamina() + " " +
                     camel.getProgess() + " " + camel.getEnemy());
 
-        } else if (message.getClass() == RestMessage.class) {
+        } else if (message.equals("rest")) {
             camel.rest();
             camel.gameOverLose();
             camel.gameOverWin();
             System.out.println(camel.getHydration() + " " + camel.getStamina() + " " +
                     camel.getProgess() + " " + camel.getEnemy());
-        } else if (message.getClass() == QuitMessage.class) {
+        } else if (message.equals("quit")) {
             System.exit(0);
             System.out.println("Quit Game");
         }
