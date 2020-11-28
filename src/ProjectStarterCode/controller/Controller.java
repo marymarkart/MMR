@@ -21,7 +21,11 @@ public class Controller {
         this.camel = camel;
         this.queue = queue;
         valves.add(new DoNewGameValve());
-        valves.add(new DoHitValve());
+        valves.add(new DoRunValve());
+        valves.add(new DoWalkValve());
+        valves.add(new DoHydrateValve());
+        valves.add(new DoRestValve());
+        valves.add(new DoQuitValve());
     }
 
     public void mainLoop() {
@@ -29,6 +33,7 @@ public class Controller {
         this.message = null;
         while (response != ValveResponse.FINISH) {
             try {
+                updateGameInfo();
                 this.message = queue.take(); // <--- take next message from the queue
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -45,6 +50,7 @@ public class Controller {
     }
 
     private void updateGameInfo() {
+        gameInfo.GameInfo(message, camel);
     }
 
     private interface Valve {
@@ -67,14 +73,54 @@ public class Controller {
         }
     }
 
-    private class DoHitValve implements Valve {
+    private class DoRunValve implements Valve {
         @Override
         public ValveResponse execute(Message message) {
-            if (message.getClass() != RunMessage.class &&
-                    message.getClass() != WalkMessage.class &&
-                    message.getClass() != HydrateMessage.class &&
-                    message.getClass() != RestMessage.class &&
-                    message.getClass() != QuitMessage.class) {
+            if (message.getClass() != RunMessage.class) {
+                return ValveResponse.MISS;
+            }
+            // otherwise message is of HitMessage type
+            // actions in Model and View
+            return ValveResponse.EXECUTED;
+        }
+    }
+    private class DoWalkValve implements Valve {
+        @Override
+        public ValveResponse execute(Message message) {
+            if (message.getClass() != WalkMessage.class) {
+                return ValveResponse.MISS;
+            }
+            // otherwise message is of HitMessage type
+            // actions in Model and View
+            return ValveResponse.EXECUTED;
+        }
+    }
+    private class DoHydrateValve implements Valve {
+        @Override
+        public ValveResponse execute(Message message) {
+            if (message.getClass() != HydrateMessage.class) {
+                return ValveResponse.MISS;
+            }
+            // otherwise message is of HitMessage type
+            // actions in Model and View
+            return ValveResponse.EXECUTED;
+        }
+    }
+    private class DoRestValve implements Valve {
+        @Override
+        public ValveResponse execute(Message message) {
+            if (message.getClass() != RestMessage.class) {
+                return ValveResponse.MISS;
+            }
+            // otherwise message is of HitMessage type
+            // actions in Model and View
+            return ValveResponse.EXECUTED;
+        }
+    }
+    private class DoQuitValve implements Valve {
+        @Override
+        public ValveResponse execute(Message message) {
+            if (message.getClass() != QuitMessage.class) {
                 return ValveResponse.MISS;
             }
             // otherwise message is of HitMessage type

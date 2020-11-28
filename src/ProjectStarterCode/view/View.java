@@ -139,10 +139,12 @@ public class View extends JFrame{
         rules.add(text6);
         JButton ok = new JButton("Let's Play!");
         rules.add(ok);
-        ok.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        ok.addActionListener(event -> {
+            try {
+                this.queue.put(new NewGameMessage()); // <--- adding Walk message to the queue
                 rules.dispose();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         });
         rules.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -187,12 +189,14 @@ public class View extends JFrame{
 }
 class GameBoard extends JPanel {
     public Image image;
+    Image camelIcon;
+    Camel thisCamel;
 
-    public GameBoard() {
+    public GameBoard(Camel camel) {
         setFocusable(true);
         ImageIcon i = new ImageIcon("images/background2.jpg");
         image = i.getImage();
-
+        camelIcon = camel.getIcon().getImage();
     }
 
     public void paint(Graphics g) {
@@ -200,5 +204,6 @@ class GameBoard extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.drawImage(image, 0, 0, null);
+        g2d.drawImage(camelIcon, camel.getX(), camel.getY(), null);
     }
 }

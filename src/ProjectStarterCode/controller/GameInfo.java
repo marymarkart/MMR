@@ -8,7 +8,7 @@ public class GameInfo {
     // information that is needed to repaint the View
     public void GameInfo(Message message, Camel camel) {
         int status = 0;
-        if (message.equals("run")) {
+        if (message.getClass() == RunMessage.class) {
             status = camel.run();
             System.out.println(status);
             camel.gameOverLose();
@@ -28,26 +28,26 @@ public class GameInfo {
             }
             System.out.println(camel.getHydration() + " " + camel.getStamina() + " " +
                     camel.getProgess() + " " + camel.getEnemy());
-        } else if (message.equals("walk")) {
+        } else if (message.getClass() == WalkMessage.class) {
             camel.walk();
             camel.gameOverLose();
             camel.gameOverWin();
             System.out.println(camel.getHydration() + " " + camel.getStamina() + " " +
                     camel.getProgess() + " " + camel.getEnemy());
-        } else if (message.equals("hydrate")) {
+        } else if (message.getClass() == HydrateMessage.class) {
             camel.hydrate();
             camel.gameOverLose();
             camel.gameOverWin();
             System.out.println(camel.getHydration() + " " + camel.getStamina() + " " +
                     camel.getProgess() + " " + camel.getEnemy());
 
-        } else if (message.equals("rest")) {
+        } else if (message.getClass() == RestMessage.class) {
             camel.rest();
             camel.gameOverLose();
             camel.gameOverWin();
             System.out.println(camel.getHydration() + " " + camel.getStamina() + " " +
                     camel.getProgess() + " " + camel.getEnemy());
-        } else if (message.equals("quit")) {
+        } else if (message.getClass() == QuitMessage.class) {
             System.exit(0);
             System.out.println("Quit Game");
         }

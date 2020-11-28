@@ -17,6 +17,12 @@ public class Camel{
     Random rand = new Random();
     int number = 0;
 
+    public CamelIcon getIcon() {
+        return icon;
+    }
+
+    CamelIcon icon;
+
     public StatsView getsView() {
         return sView;
     }
@@ -33,6 +39,7 @@ public class Camel{
         this.progress = 0;
         this.enemy = -5;
         this.sView = new StatsView(hydration, stamina, progress, enemy);
+        icon = new CamelIcon();
     }
 
     public int getHydration() {
@@ -208,16 +215,36 @@ public class Camel{
     public boolean isRoundOver() {
         return roundOver;
     }
+
+    public int getX() {
+        return icon.x;
+    }
+    public int getY() {
+        return icon.y;
+    }
 }
-class CamelIcon extends JPanel implements ActionListener {
+class CamelIcon extends JPanel {
     int x, dx, y, nx2;
     public Image still;
+    ImageIcon camel1 = new ImageIcon("images/camel1.png");
     int v = 0;
-    Timer t = new Timer(5, this);
+    //Timer t = new Timer(5, this);
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
+    public CamelIcon() {
+        //setFocusable(true);
+        still = camel1.getImage();
+        x = 150;
+        //nx2 = 640;
+        y = 265;
+    }
+    public Image getImage(){
+        return still;
+    }
+    public void paint(Graphics g){
+        super.paint(g);
+        Graphics2D g2d = (Graphics2D) g;
 
+        g2d.drawImage(still, x, y, null);
     }
 }
 
