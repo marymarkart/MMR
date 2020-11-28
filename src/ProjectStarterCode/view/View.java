@@ -3,6 +3,7 @@ package ProjectStarterCode.view;
 import ProjectStarterCode.controller.*;
 import ProjectStarterCode.model.Camel;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -107,7 +108,7 @@ public class View extends JFrame{
         c.gridheight = 400;
         c.gridx = 2;
         c.gridy = 0;
-        frame.add(new GameBoard(),c);
+        frame.add(new GameBoard(camel),c);
 
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -189,14 +190,15 @@ public class View extends JFrame{
 }
 class GameBoard extends JPanel {
     public Image image;
-    Image camelIcon;
-    Camel thisCamel;
+    public Image camelImage;
+    Camel camel;
 
     public GameBoard(Camel camel) {
         setFocusable(true);
         ImageIcon i = new ImageIcon("images/background2.jpg");
         image = i.getImage();
-        camelIcon = camel.getIcon().getImage();
+        camelImage = camel.getCamelImage();
+        this.camel = camel;
     }
 
     public void paint(Graphics g) {
@@ -204,6 +206,6 @@ class GameBoard extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.drawImage(image, 0, 0, null);
-        g2d.drawImage(camelIcon, camel.getX(), camel.getY(), null);
+        g2d.drawImage(camelImage, camel.getX(), camel.getY(), null);
     }
 }

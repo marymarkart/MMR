@@ -14,6 +14,7 @@ public class Camel{
     int stamina;
     int progress;
     int enemy;
+    Image camelImg;
     Random rand = new Random();
     int number = 0;
 
@@ -196,6 +197,11 @@ public class Camel{
         flower.setLocationRelativeTo(null);
 
     }
+
+    public Image getCamelImage(){
+        camelImg = icon.still;
+        return camelImg;
+    }
     public void attach(StatsView sView) {
         this.sView = sView;
     }
@@ -232,7 +238,7 @@ class CamelIcon extends JPanel {
 
     public CamelIcon() {
         //setFocusable(true);
-        still = camel1.getImage();
+        this.still = camel1.getImage();
         x = 150;
         //nx2 = 640;
         y = 265;
