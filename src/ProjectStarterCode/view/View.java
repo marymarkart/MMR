@@ -2,6 +2,7 @@ package ProjectStarterCode.view;
 
 import ProjectStarterCode.controller.*;
 import ProjectStarterCode.model.Camel;
+import ProjectStarterCode.model.CamelIcon;
 
 
 import javax.swing.*;
@@ -84,7 +85,7 @@ public class View extends JFrame{
         menu.add(quit);
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 4;
-        c.ipady = 200;
+        c.ipady = 100;
         c.gridx = 0;
         c.gridy = 0;
         frame.add(menu, c);
@@ -93,10 +94,24 @@ public class View extends JFrame{
         JPanel statsView;
         stats = camel.getsView();
         statsView = stats;
-        statsView.setLayout(new FlowLayout());
+        statsView.setLayout(new GridLayout(8,1));
+        statsView.setSize(new Dimension(50,50));
         statsView.setVisible(true);
-
-        c.ipady = 200;
+        JLabel hyd = new JLabel("Health");
+        JLabel spacer = new JLabel("");
+        JLabel stam = new JLabel("Stamina");
+        JLabel spacer2 = new JLabel("");
+        JLabel prog = new JLabel("Progress");
+        JLabel spacer3 = new JLabel("");
+        JLabel enem = new JLabel("Enemy Progress");
+        statsView.add(hyd);
+        statsView.add(spacer);
+        statsView.add(stam);
+        statsView.add(spacer2);
+        statsView.add(prog);
+        statsView.add(spacer3);
+        statsView.add(enem);
+        c.ipady = 5;
         c.weightx = 2;
         c.gridx = 0;
         c.gridy = 1;
@@ -110,6 +125,8 @@ public class View extends JFrame{
         c.gridy = 0;
         frame.add(new GameBoard(camel),c);
 
+        JPanel camelIcon = new JPanel();
+        frame.add(new CamelIcon());
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -206,6 +223,6 @@ class GameBoard extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.drawImage(image, 0, 0, null);
-        g2d.drawImage(camelImage, camel.getX(), camel.getY(), null);
+        //g2d.drawImage(camel.getCamelImage(), camel.getX(), camel.getY(), null);
     }
 }

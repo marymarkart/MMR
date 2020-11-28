@@ -32,6 +32,7 @@ public class Camel{
     ImageIcon oasisIcon = new ImageIcon("images/oasis3.png");
     ImageIcon sandstormIcon = new ImageIcon("images/sandstorm.gif");
     ImageIcon cactusIcon = new ImageIcon("images/cactusFlower.png");
+    ImageIcon genieIcon = new ImageIcon("images/genie.png");
 
 
     public Camel() {
@@ -126,6 +127,13 @@ public class Camel{
         }
         return 0;
     }
+    public void changeIcon(Image i){
+        this.camelImg = i;
+    }
+
+    public void restoreIcon(){
+        icon.restoreImage();
+    }
 
     public void findOasis() {
         System.out.print("You found an oasis");
@@ -202,6 +210,30 @@ public class Camel{
 
     }
 
+    public void findGenie() {
+        System.out.println("You found a special cactus flower");
+        rest();
+        hydrate();
+        JFrame genie = new JFrame();
+        genie.setLayout(new FlowLayout());
+        genie.setPreferredSize(new Dimension(450, 200));
+        JLabel winText = new JLabel("You found a Genie! You're stamina and health has been restored!");
+        genie.add(winText);
+        genie.add(new JLabel(genieIcon));
+        JButton ok = new JButton("OK");
+        genie.add(ok);
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                genie.dispose();
+            }
+        });
+        genie.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        genie.pack();
+        genie.setVisible(true);
+        genie.setLocationRelativeTo(null);
+    }
+
     public Image getCamelImage(){
         camelImg = icon.still;
         return camelImg;
@@ -233,29 +265,5 @@ public class Camel{
         return icon.y;
     }
 
-}
-class CamelIcon extends JPanel {
-    int x, dx, y, nx2;
-    public Image still;
-    ImageIcon camel1 = new ImageIcon("images/camel1.png");
-    int v = 0;
-    //Timer t = new Timer(5, this);
-
-    public CamelIcon() {
-        //setFocusable(true);
-        this.still = camel1.getImage();
-        x = 150;
-        //nx2 = 640;
-        y = 265;
-    }
-    public Image getImage(){
-        return still;
-    }
-    public void paint(Graphics g){
-        super.paint(g);
-        Graphics2D g2d = (Graphics2D) g;
-
-        g2d.drawImage(still, x, y, null);
-    }
 }
 

@@ -13,6 +13,10 @@ public class GameInfo{
     String lostStamina = "You have run out of stamina! You lose!";
     String both = "You have run out of water and stamina! You lose!";
     String enemyWins = "The enemy has caught up to you! You lose!";
+    ImageIcon run = new ImageIcon("images/camelRun.gif");
+    ImageIcon walk = new ImageIcon("images/camelWalk.gif");
+    ImageIcon rest = new ImageIcon("images/camelRest.gif");
+    Image thisIcon;
 
     // the state of the Game/Application
     // information that is needed to repaint the View
@@ -20,8 +24,18 @@ public class GameInfo{
         int lose = 0;
         int winGame = 0;
         int status = 0;
+        ActionListener animation = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                camel.changeIcon(thisIcon);
+            }
+        };
         if (message.equals("run")) {
             status = camel.run();
+            this.thisIcon = run.getImage();
+            Timer timer = new Timer(100, animation);
+            timer.start();
+            //camel.restoreIcon();
             System.out.println(status);
             lose = camel.gameOverLose();
             winGame = camel.gameOverWin();
@@ -40,25 +54,52 @@ public class GameInfo{
             if (winGame == 1){
                 gameMessage(win);
             }
-            if (status == 17) {
-                camel.findOasis();
-                camel.updateValues(camel.getHydration(), camel.getStamina(), camel.getProgess(), camel.getEnemy());
+            if (camel.getProgess() < 250 || camel.getEnemy() > camel.getProgess()) {
+                if (status == 17) {
+                    camel.findOasis();
+                    camel.updateValues(camel.getHydration(), camel.getStamina(), camel.getProgess(), camel.getEnemy());
+                }
+                if (status == 13) {
+                    camel.sandstormHydrate();
+                    camel.sandstormStamina();
+                    camel.updateValues(camel.getHydration(), camel.getStamina(), camel.getProgess(), camel.getEnemy());
+                }
+                if (status == 10) {
+                    camel.cactusFlower();
+                    camel.updateValues(camel.getHydration(), camel.getStamina(), camel.getProgess(), camel.getEnemy());
+                }
+                System.out.println(camel.getHydration() + " " + camel.getStamina() + " " +
+                        camel.getProgess() + " " + camel.getEnemy());
             }
-            if (status == 13) {
-                camel.sandstormHydrate();
-                camel.sandstormStamina();
-                camel.updateValues(camel.getHydration(), camel.getStamina(), camel.getProgess(), camel.getEnemy());
-            }
-            if (status == 10) {
-                camel.cactusFlower();
-                camel.updateValues(camel.getHydration(), camel.getStamina(), camel.getProgess(), camel.getEnemy());
-            }
-            System.out.println(camel.getHydration() + " " + camel.getStamina() + " " +
-                    camel.getProgess() + " " + camel.getEnemy());
         } else if (message.equals("walk")) {
             camel.walk();
-            camel.gameOverLose();
-            camel.gameOverWin();
+            lose = camel.gameOverLose();
+            winGame = camel.gameOverWin();
+            if (lose == 1){
+                gameMessage(both);
+            }
+            if (lose == 2){
+                gameMessage(lostStamina);
+            }
+            if (lose == 3){
+                gameMessage(dehydrate);
+            }
+            if (lose == 4){
+                gameMessage(enemyWins);
+            }
+            if (winGame == 1){
+                gameMessage(win);
+            }
+            if (camel.getProgess() < 250 || camel.getEnemy() > camel.getProgess()) {
+                if (status <= 7){
+                    camel.findGenie();
+                    camel.updateValues(camel.getHydration(), camel.getStamina(), camel.getProgess(), camel.getEnemy());
+                }
+                }
+            System.out.println(camel.getHydration() + " " + camel.getStamina() + " " +
+                    camel.getProgess() + " " + camel.getEnemy());
+        } else if (message.equals("hydrate")) {
+            camel.hydrate();
             lose = camel.gameOverLose();
             winGame = camel.gameOverWin();
             if (lose == 1){
@@ -78,17 +119,30 @@ public class GameInfo{
             }
             System.out.println(camel.getHydration() + " " + camel.getStamina() + " " +
                     camel.getProgess() + " " + camel.getEnemy());
-        } else if (message.equals("hydrate")) {
-            camel.hydrate();
-            camel.gameOverLose();
-            camel.gameOverWin();
-            System.out.println(camel.getHydration() + " " + camel.getStamina() + " " +
-                    camel.getProgess() + " " + camel.getEnemy());
 
         } else if (message.equals("rest")) {
             camel.rest();
-            camel.gameOverLose();
-            camel.gameOverWin();
+            //Timer timer = new Timer(100, this);
+            //timer.start();
+            //camel.changeIcon(run);
+           // camel.restoreIcon();
+            lose = camel.gameOverLose();
+            winGame = camel.gameOverWin();
+            if (lose == 1){
+                gameMessage(both);
+            }
+            if (lose == 2){
+                gameMessage(lostStamina);
+            }
+            if (lose == 3){
+                gameMessage(dehydrate);
+            }
+            if (lose == 4){
+                gameMessage(enemyWins);
+            }
+            if (winGame == 1){
+                gameMessage(win);
+            }
             System.out.println(camel.getHydration() + " " + camel.getStamina() + " " +
                     camel.getProgess() + " " + camel.getEnemy());
         } else if (message.equals("quit")) {
