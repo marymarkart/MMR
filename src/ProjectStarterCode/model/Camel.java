@@ -16,6 +16,11 @@ public class Camel{
     int enemy;
     Random rand = new Random();
     int number = 0;
+
+    public StatsView getsView() {
+        return sView;
+    }
+
     StatsView sView;
     ImageIcon oasisIcon = new ImageIcon("images/oasis3.png");
     ImageIcon sandstormIcon = new ImageIcon("images/sandstorm.gif");
@@ -27,6 +32,7 @@ public class Camel{
         this.stamina = 10;
         this.progress = 0;
         this.enemy = -5;
+        this.sView = new StatsView(hydration, stamina, progress, enemy);
     }
 
     public int getHydration() {

@@ -14,7 +14,7 @@ public class GameBoard extends JPanel implements ActionListener {
     public GameBoard(){
         time = new Timer(5, this);
         time.start();
-        time.addActionListener(new AL());
+       // time.addActionListener(new AL());
         setFocusable(true);
         ImageIcon i = new ImageIcon("images/background2.jpg");
         image = i.getImage();
@@ -41,21 +41,20 @@ public class GameBoard extends JPanel implements ActionListener {
         g2d.drawImage(p.getImage(), p.getX(), p.getY(), null);
     }
 
-    private class AL extends GameProgress {
-        String camelMovement = "";
-
-        public void keyReleased(ActionEvent e) {
-            if (e.getSource() == run){
-                camelMovement = "run";
-                p.move();
-            }
-        }
+//    private class AL extends GameProgress {
+//        String camelMovement = "";
+//
+//        public void keyReleased(ActionEvent e) {
+//            if (e.getSource() == run){
+//                camelMovement = "run";
+//                p.move();
+//            }
+//        }
 
 //        @Override
 //        public void keyPressed(KeyEvent e) {
 //            super.keyPressed(e);
 //        }
     }
-}
 
 

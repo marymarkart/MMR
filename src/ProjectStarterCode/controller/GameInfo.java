@@ -3,6 +3,7 @@ package ProjectStarterCode.controller;
 import ProjectStarterCode.model.Camel;
 
 public class GameInfo {
+
     // the state of the Game/Application
     // information that is needed to repaint the View
     public void GameInfo(Message message, Camel camel) {

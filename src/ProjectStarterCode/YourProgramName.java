@@ -14,8 +14,8 @@ public class YourProgramName {
     private static Camel camel;
 
     public static void main(String[] args) {
-        view = View.init(queue);
         camel = new Camel();
+        view = View.init(queue, camel);
         Controller controller = new Controller(view, camel, queue);
 
         controller.mainLoop();

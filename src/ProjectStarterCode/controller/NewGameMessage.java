@@ -2,7 +2,6 @@ package ProjectStarterCode.controller;
 
 
 public class NewGameMessage implements Message {
-
 }
 
 

@@ -10,14 +10,15 @@ import java.util.concurrent.BlockingQueue;
 public class Controller {
     private BlockingQueue<Message> queue;
     private View view; // Direct reference to view
-    private Camel model; // Direct reference to model
+    private Camel camel; // Direct reference to model
     private GameInfo gameInfo; // Direct reference to the state of the Game/Application
+    Message message;
 
     private List<Valve> valves = new LinkedList<Valve>();
 
-    public Controller(View view, Camel model, BlockingQueue<Message> queue) {
+    public Controller(View view, Camel camel, BlockingQueue<Message> queue) {
         this.view = view;
-        this.model = model;
+        this.camel = camel;
         this.queue = queue;
         valves.add(new DoNewGameValve());
         valves.add(new DoHitValve());
@@ -25,10 +26,10 @@ public class Controller {
 
     public void mainLoop() {
         ValveResponse response = ValveResponse.EXECUTED;
-        Message message = null;
+        this.message = null;
         while (response != ValveResponse.FINISH) {
             try {
-                message = queue.take(); // <--- take next message from the queue
+                this.message = queue.take(); // <--- take next message from the queue
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -44,7 +45,6 @@ public class Controller {
     }
 
     private void updateGameInfo() {
-
     }
 
     private interface Valve {
@@ -70,7 +70,11 @@ public class Controller {
     private class DoHitValve implements Valve {
         @Override
         public ValveResponse execute(Message message) {
-            if (message.getClass() != HitMessage.class) {
+            if (message.getClass() != RunMessage.class &&
+                    message.getClass() != WalkMessage.class &&
+                    message.getClass() != HydrateMessage.class &&
+                    message.getClass() != RestMessage.class &&
+                    message.getClass() != QuitMessage.class) {
                 return ValveResponse.MISS;
             }
             // otherwise message is of HitMessage type
