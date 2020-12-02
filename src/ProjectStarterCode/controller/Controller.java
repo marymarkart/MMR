@@ -68,7 +68,7 @@ public class Controller {
             action = "quit";
         }
         if (action != null) {
-            gameInfo.GameInfo(action, camel);
+            gameInfo.GameInfo(action, camel, view, queue);
         }
     }
 

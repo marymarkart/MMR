@@ -1,11 +1,13 @@
 package ProjectStarterCode.controller;
 
 import ProjectStarterCode.model.Camel;
+import ProjectStarterCode.view.View;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.BlockingQueue;
 
 public class GameInfo{
     String win = "YOU WIN!";
@@ -20,7 +22,7 @@ public class GameInfo{
 
     // the state of the Game/Application
     // information that is needed to repaint the View
-    public void GameInfo(String message, Camel camel) {
+    public void GameInfo(String message, Camel camel, View view, BlockingQueue<Message> queue) {
         int lose = 0;
         int winGame = 0;
         int status = 0;
@@ -33,8 +35,11 @@ public class GameInfo{
         if (message.equals("run")) {
             status = camel.run();
             this.thisIcon = run.getImage();
-            Timer timer = new Timer(100, animation);
-            timer.start();
+            //view.dispose();
+            //view.repaint();
+            //view.init(queue, camel);
+            //Timer timer = new Timer(100, animation);
+            //timer.start();
             //camel.restoreIcon();
             System.out.println(status);
             lose = camel.gameOverLose();

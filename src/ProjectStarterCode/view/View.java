@@ -7,22 +7,16 @@ import ProjectStarterCode.model.CamelIcon;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.concurrent.BlockingQueue;
 
 public class View extends JFrame{
-    private JFrame frame;
+    private static JFrame frame = null;
     private BlockingQueue<Message> queue;
     StatsView stats;
-    JButton run = new JButton("Run");
-    JButton walk = new JButton("Walk");
-    JButton hydrate = new JButton("Hydrate");
-    JButton rest = new JButton("Rest");
-    JButton quit = new JButton("Quit");
 
     public static View init(BlockingQueue<Message> queue, Camel camel) {
         // Create object of type view
+        frame = new JFrame();
         return new View(queue, camel);
     }
 
@@ -33,19 +27,78 @@ public class View extends JFrame{
         // JFrame should be able to add Messages to queue
         // JFrame can be in a separate class or created JFrame with all the elements in this class
         // or you can make View a subclass of JFrame by extending it
-        JFrame frame = new JFrame();
-        frame.setLayout(new GridBagLayout());
-        frame.setTitle("Camel Game");
+        //frame = new JFrame();
+        this.frame.setLayout(new GridBagLayout());
+        this.frame.setTitle("Camel Game");
         GridBagConstraints c = new GridBagConstraints();
-        frame.setPreferredSize(new Dimension(500, 400));
+        this.frame.setPreferredSize(new Dimension(500, 400));
 
 
         JPanel menu = new JPanel();
         menu.setLayout(new GridLayout(5,1));
         menu.setPreferredSize(new Dimension(100, 100));
+        JButton run = new JButton("Run");
+        JButton walk = new JButton("Walk");
+        JButton hydrate = new JButton("Hydrate");
+        JButton rest = new JButton("Rest");
+        JButton quit = new JButton("Quit");
+        menu.add(run);
+        menu.add(walk);
+        menu.add(hydrate);
+        menu.add(rest);
+        menu.add(quit);
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 4;
+        c.ipady = 100;
+        c.gridx = 0;
+        c.gridy = 0;
+        this.frame.add(menu, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        JPanel statsView;
+        stats = camel.getsView();
+        statsView = stats;
+        statsView.setLayout(new GridLayout(8,1));
+        statsView.setSize(new Dimension(50,50));
+        statsView.setVisible(true);
+        JLabel hyd = new JLabel("Health" + stats.getn1());
+        JLabel spacer = new JLabel("");
+        JLabel stam = new JLabel("Stamina");
+        JLabel spacer2 = new JLabel("");
+        JLabel prog = new JLabel("Progress");
+        JLabel spacer3 = new JLabel("");
+        JLabel enem = new JLabel("Enemy Progress");
+        statsView.add(hyd);
+        statsView.add(spacer);
+        statsView.add(stam);
+        statsView.add(spacer2);
+        statsView.add(prog);
+        statsView.add(spacer3);
+        statsView.add(enem);
+        c.ipady = 5;
+        c.weightx = 2;
+        c.gridx = 0;
+        c.gridy = 1;
+        this.frame.add(statsView, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.ipady = 400;      //make this component tall
+        c.weightx = 400.0;
+        c.gridheight = 400;
+        c.gridx = 2;
+        c.gridy = 0;
+        GameBoard gameBoard = new GameBoard(camel);
+        this.frame.add(gameBoard,c);
+
+        JPanel camelIcon = new JPanel();
+        this.frame.add(new CamelIcon());
+
         run.addActionListener(event -> {
             try {
                 this.queue.put(new RunMessage()); // <--- adding Run message to the queue
+                //change(frame, camel);
+                change(frame, camel, statsView, gameBoard );
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -78,60 +131,10 @@ public class View extends JFrame{
                 e.printStackTrace();
             }
         });
-        menu.add(run);
-        menu.add(walk);
-        menu.add(hydrate);
-        menu.add(rest);
-        menu.add(quit);
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 4;
-        c.ipady = 100;
-        c.gridx = 0;
-        c.gridy = 0;
-        frame.add(menu, c);
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        JPanel statsView;
-        stats = camel.getsView();
-        statsView = stats;
-        statsView.setLayout(new GridLayout(8,1));
-        statsView.setSize(new Dimension(50,50));
-        statsView.setVisible(true);
-        JLabel hyd = new JLabel("Health");
-        JLabel spacer = new JLabel("");
-        JLabel stam = new JLabel("Stamina");
-        JLabel spacer2 = new JLabel("");
-        JLabel prog = new JLabel("Progress");
-        JLabel spacer3 = new JLabel("");
-        JLabel enem = new JLabel("Enemy Progress");
-        statsView.add(hyd);
-        statsView.add(spacer);
-        statsView.add(stam);
-        statsView.add(spacer2);
-        statsView.add(prog);
-        statsView.add(spacer3);
-        statsView.add(enem);
-        c.ipady = 5;
-        c.weightx = 2;
-        c.gridx = 0;
-        c.gridy = 1;
-        frame.add(statsView, c);
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 400;      //make this component tall
-        c.weightx = 400.0;
-        c.gridheight = 400;
-        c.gridx = 2;
-        c.gridy = 0;
-        frame.add(new GameBoard(camel),c);
-
-        JPanel camelIcon = new JPanel();
-        frame.add(new CamelIcon());
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
+        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame.pack();
+        this.frame.setVisible(true);
+        this.frame.setLocationRelativeTo(null);
 
 
 
@@ -169,40 +172,22 @@ public class View extends JFrame{
         rules.pack();
         rules.setVisible(true);
         rules.setLocationRelativeTo(null);
-
-        //JButton newGame = new JButton("New Game");
-        //JButton hitButton = new JButton("hit");
-
-//        newGame.addActionListener(event -> {
-//            try {
-//                this.queue.put(new NewGameMessage()); // <--- adding NewGame message to the queue
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        });
-//
-//        hitButton.addActionListener(event -> {
-//            try {
-//                this.queue.put(new HitMessage()); // <--- adding Hit message to the queue
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        });
-//
-//        // add everything and set layout and other standard JFrame settings
-//        gameFrame.add(newGame);
-//        gameFrame.add(hitButton);
     }
 
 
-    public void change() {
-        // TODO: do all the updates and repaint
+    public void change(JFrame frame, Camel camel, JPanel stats, JPanel gameBoard) {
+        camel.updateValues(camel.getHydration(), camel.getStamina(), camel.getProgess(), camel.getEnemy());
         frame.repaint();
+        stats.repaint();
+        gameBoard.repaint();
     }
 
     public void dispose() {
-        // TODO: clear all the resources
-        // for example, gameFrame.dispose();
+        frame.dispose();
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 }
 class GameBoard extends JPanel {
@@ -223,6 +208,6 @@ class GameBoard extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.drawImage(image, 0, 0, null);
-        //g2d.drawImage(camel.getCamelImage(), camel.getX(), camel.getY(), null);
+        g2d.drawImage(camel.getCamelImage(), camel.getX(), camel.getY(), null);
     }
 }
