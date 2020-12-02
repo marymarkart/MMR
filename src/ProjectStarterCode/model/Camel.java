@@ -17,12 +17,12 @@ public class Camel{
     Image camelImg;
     Random rand = new Random();
     int number = 0;
+    CamelIcon icon;
 
     public CamelIcon getIcon() {
         return icon;
     }
 
-    CamelIcon icon;
 
     public StatsView getsView() {
         return sView;
