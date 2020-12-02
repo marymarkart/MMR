@@ -1,6 +1,6 @@
 package ProjectStarterCode.view;
 
-import com.sun.codemodel.internal.JLabel;
+//import com.sun.codemodel.internal.JLabel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,23 +39,6 @@ public class StatsView extends JPanel {
             repaint();
         }
 
-//    public void RectangleComponent(int x, int y, Color color, boolean wantLabel)
-//    {
-//        width = 125;
-//        height = 18;
-//        xCoord = x;
-//        yCoord = y;
-//        this.color = color;
-//        origWidth = width;
-//        this.wantLabel = wantLabel;
-//        if(wantLabel)
-//        {
-//            label = new JLabel(this.width + "/" + origWidth);
-//            label.setLabelFor(this);
-//        }
-//        setBounds(xCoord, yCoord, width, height);
-//        rectangle = new Rectangle2D.Float(xCoord, yCoord, width, height);
-//    }
         @Override
         public void paint(Graphics g){
             super.paint(g);

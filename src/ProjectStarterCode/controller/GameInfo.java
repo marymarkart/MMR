@@ -15,9 +15,6 @@ public class GameInfo{
     String lostStamina = "You have run out of stamina! You lose!";
     String both = "You have run out of water and stamina! You lose!";
     String enemyWins = "The enemy has caught up to you! You lose!";
-    ImageIcon run = new ImageIcon("images/camelRun.gif");
-    ImageIcon walk = new ImageIcon("images/camelWalk.gif");
-    ImageIcon rest = new ImageIcon("images/camelRest.gif");
     Image thisIcon;
 
     // the state of the Game/Application
@@ -34,13 +31,14 @@ public class GameInfo{
         };
         if (message.equals("run")) {
             status = camel.run();
-            this.thisIcon = run.getImage();
+            //this.thisIcon = run.getImage();
             //view.dispose();
             //view.repaint();
             //view.init(queue, camel);
             //Timer timer = new Timer(100, animation);
             //timer.start();
             //camel.restoreIcon();
+            //view.change();
             System.out.println(status);
             lose = camel.gameOverLose();
             winGame = camel.gameOverWin();

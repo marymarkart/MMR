@@ -33,6 +33,11 @@ public class Camel{
     ImageIcon sandstormIcon = new ImageIcon("images/sandstorm.gif");
     ImageIcon cactusIcon = new ImageIcon("images/cactusFlower.png");
     ImageIcon genieIcon = new ImageIcon("images/genie.png");
+    ImageIcon run = new ImageIcon("images/camelRun.gif");
+    ImageIcon walk = new ImageIcon("images/camelWalk.gif");
+    ImageIcon rest = new ImageIcon("images/camelRest.gif");
+    ImageIcon camel1 = new ImageIcon("images/camel1.png");
+    ImageIcon currentStateImage = camel1;
 
 
     public Camel() {
@@ -53,7 +58,7 @@ public class Camel{
     }
 
     public void enemyMoves(){
-        this.enemy += 10;
+        this.enemy += 6;
     }
 
     public int run(){
@@ -64,12 +69,14 @@ public class Camel{
         enemyMoves();
         //camelIcon.moveCamelRun();
         updateValues(hydration, stamina, progress, enemy);
+        currentStateImage = run;
         return number;
 
 
     }
 
     public int walk(){
+        currentStateImage = walk;
         number = rand.nextInt(10) + 1;
         progress += number;
         hydration -= 1;
@@ -81,14 +88,15 @@ public class Camel{
 
     public void hydrate(){
         this.hydration = 10;
-        this.enemy += 5;
+        this.enemy += 3;
         updateValues(hydration, stamina, progress, enemy);
     }
 
     public void rest(){
         this.stamina = 10;
-        this.enemy += 5;
+        this.enemy += 3;
         updateValues(hydration, stamina, progress, enemy);
+        currentStateImage = rest;
     }
 
 
@@ -234,9 +242,9 @@ public class Camel{
         genie.setLocationRelativeTo(null);
     }
 
-    public Image getCamelImage(){
-        camelImg = icon.still;
-        return camelImg;
+    public ImageIcon getCamelImage(){
+        //camelImg = icon.still;
+        return currentStateImage;
     }
     public void attach(StatsView sView) {
         this.sView = sView;

@@ -13,6 +13,7 @@ public class View extends JFrame{
     private static JFrame frame = null;
     private BlockingQueue<Message> queue;
     StatsView stats;
+    public GameBoard gameBoard;
 
     public static View init(BlockingQueue<Message> queue, Camel camel) {
         // Create object of type view
@@ -87,7 +88,7 @@ public class View extends JFrame{
         c.gridheight = 400;
         c.gridx = 2;
         c.gridy = 0;
-        GameBoard gameBoard = new GameBoard(camel);
+        gameBoard = new GameBoard(camel);
         this.frame.add(gameBoard,c);
 
         JPanel camelIcon = new JPanel();
@@ -106,6 +107,7 @@ public class View extends JFrame{
         walk.addActionListener(event -> {
             try {
                 this.queue.put(new WalkMessage()); // <--- adding Walk message to the queue
+                change(frame, camel, statsView, gameBoard );
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -120,6 +122,7 @@ public class View extends JFrame{
         rest.addActionListener(event -> {
             try {
                 this.queue.put(new RestMessage()); // <--- adding Rest message to the queue
+                change(frame, camel, statsView, gameBoard );
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -175,7 +178,7 @@ public class View extends JFrame{
     }
 
 
-    public void change(JFrame frame, Camel camel, JPanel stats, JPanel gameBoard) {
+    public void change(JFrame frame, Camel camel, JPanel stats, GameBoard gameBoard) {
         camel.updateValues(camel.getHydration(), camel.getStamina(), camel.getProgess(), camel.getEnemy());
         frame.repaint();
         stats.repaint();
@@ -190,24 +193,34 @@ public class View extends JFrame{
         return frame;
     }
 }
-class GameBoard extends JPanel {
+class GameBoard extends JLayeredPane {
     public Image image;
     public Image camelImage;
     Camel camel;
+    JLabel camelLabel = null;
+    JLabel backgroundLabel = null;
 
     public GameBoard(Camel camel) {
         setFocusable(true);
-        ImageIcon i = new ImageIcon("images/background2.jpg");
-        image = i.getImage();
-        camelImage = camel.getCamelImage();
         this.camel = camel;
     }
 
     public void paint(Graphics g) {
         super.paint(g);
-        Graphics2D g2d = (Graphics2D) g;
-
-        g2d.drawImage(image, 0, 0, null);
-        g2d.drawImage(camel.getCamelImage(), camel.getX(), camel.getY(), null);
+        if (backgroundLabel == null){
+            ImageIcon i = new ImageIcon("images/background2.jpg");
+            backgroundLabel = new JLabel(i);
+            backgroundLabel.setBounds(0, 0, i.getIconWidth(), i.getIconHeight());
+            this.add(backgroundLabel, Integer.valueOf(1));
+        }
+        if(camelLabel == null){
+            camelLabel = new JLabel(camel.getCamelImage());
+            camelLabel.setBounds(camel.getX(), camel.getY(), camel.getCamelImage().getIconWidth(), camel.getCamelImage().getIconHeight());
+            this.add(camelLabel,Integer.valueOf(2));
+        }
+        else {
+            camelLabel.setIcon(camel.getCamelImage());
+        }
+        //g2d.drawImage(camel.getCamelImage(), camel.getX(), camel.getY(), null);
     }
 }
