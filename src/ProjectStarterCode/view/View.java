@@ -62,7 +62,7 @@ public class View extends JFrame{
         statsView.setLayout(new GridLayout(8,1));
         statsView.setSize(new Dimension(50,50));
         statsView.setVisible(true);
-        JLabel hyd = new JLabel("Health" + stats.getn1());
+        JLabel hyd = new JLabel("Hydration");
         JLabel spacer = new JLabel("");
         JLabel stam = new JLabel("Stamina");
         JLabel spacer2 = new JLabel("");

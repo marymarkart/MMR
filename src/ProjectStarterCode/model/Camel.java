@@ -225,7 +225,7 @@ public class Camel{
         JFrame genie = new JFrame();
         genie.setLayout(new FlowLayout());
         genie.setPreferredSize(new Dimension(450, 200));
-        JLabel winText = new JLabel("You found a Genie! You're stamina and health has been restored!");
+        JLabel winText = new JLabel("You found a Genie! You're stamina and hydration has been restored!");
         genie.add(winText);
         genie.add(new JLabel(genieIcon));
         JButton ok = new JButton("OK");

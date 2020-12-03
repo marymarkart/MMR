@@ -31,14 +31,6 @@ public class GameInfo{
         };
         if (message.equals("run")) {
             status = camel.run();
-            //this.thisIcon = run.getImage();
-            //view.dispose();
-            //view.repaint();
-            //view.init(queue, camel);
-            //Timer timer = new Timer(100, animation);
-            //timer.start();
-            //camel.restoreIcon();
-            //view.change();
             System.out.println(status);
             lose = camel.gameOverLose();
             winGame = camel.gameOverWin();
@@ -94,7 +86,7 @@ public class GameInfo{
                 gameMessage(win);
             }
             if (camel.getProgess() < 250 || camel.getEnemy() > camel.getProgess()) {
-                if (status <= 7){
+                if (status == 7){
                     camel.findGenie();
                     camel.updateValues(camel.getHydration(), camel.getStamina(), camel.getProgess(), camel.getEnemy());
                 }
@@ -125,10 +117,6 @@ public class GameInfo{
 
         } else if (message.equals("rest")) {
             camel.rest();
-            //Timer timer = new Timer(100, this);
-            //timer.start();
-            //camel.changeIcon(run);
-           // camel.restoreIcon();
             lose = camel.gameOverLose();
             winGame = camel.gameOverWin();
             if (lose == 1){
