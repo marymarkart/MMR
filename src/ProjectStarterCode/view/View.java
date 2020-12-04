@@ -60,7 +60,7 @@ public class View extends JFrame{
         stats = camel.getsView();
         statsView = stats;
         statsView.setLayout(new GridLayout(8,2));
-        statsView.setSize(new Dimension(50,50));
+        statsView.setSize(new Dimension(150,150));
         statsView.setVisible(true);
         JLabel hyd = new JLabel("Hydration");
         JLabel spacer = new JLabel("");
@@ -79,7 +79,7 @@ public class View extends JFrame{
         statsView.add(spacer3);
         statsView.add(enem);
         c.ipady = 5;
-        c.weightx = 2;
+        c.weightx = 24;
         c.gridx = 0;
         c.gridy = 1;
         this.frame.add(statsView, c);
