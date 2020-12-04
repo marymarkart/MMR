@@ -1,7 +1,7 @@
 package CamelGame;
 
 import CamelGame.controller.Message;
-import CamelGame.model.Camel;
+import CamelGame.model.*;
 import CamelGame.view.View;
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,6 +14,10 @@ public class CamelGameTests {
     private static BlockingQueue<Message> queue = new LinkedBlockingQueue<>();
     private static View view;
     private static Camel camel;
+    CamelEvent oasis = new Oasis();
+    CamelEvent flower = new Flower();
+    CamelEvent sand = new Sandstorm();
+    CamelEvent genie = new Genie();
 
 
     @Test
@@ -75,5 +79,37 @@ public class CamelGameTests {
             camel.rest();
         }
         Assert.assertEquals(1, camel.gameOverWin());
+    }
+
+    @Test
+    public void testOasis(){
+        Camel camel = new Camel();
+        camel.run();
+        oasis.event(camel);
+        Assert.assertEquals(10, camel.getHydration());
+    }
+
+    @Test
+    public void testFlower(){
+        Camel camel = new Camel();
+        camel.run();
+        flower.event(camel);
+        Assert.assertEquals(10, camel.getStamina());
+    }
+
+    @Test
+    public void testSandstorm(){
+        Camel camel = new Camel();
+        camel.run();
+        sand.event(camel);
+        Assert.assertEquals(4, camel.getHydration());
+    }
+
+    @Test
+    public void testGenie(){
+        Camel camel = new Camel();
+        camel.run();
+        genie.event(camel);
+        Assert.assertEquals(10, camel.getHydration());
     }
 }

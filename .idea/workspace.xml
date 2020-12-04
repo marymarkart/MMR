@@ -30,7 +30,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="JUnit.CamelGameTests.testLose">
+  <component name="RunManager" selected="JUnit.CamelGameTests.testFlower">
     <configuration name="CamelGameTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MMR" />
       <extension name="coverage">
@@ -46,7 +46,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CamelGameTests.testHydrate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CamelGameTests.testFlower" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MMR" />
       <extension name="coverage">
         <pattern>
@@ -56,13 +56,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="CamelGame" />
       <option name="MAIN_CLASS_NAME" value="CamelGame.CamelGameTests" />
-      <option name="METHOD_NAME" value="testHydrate" />
+      <option name="METHOD_NAME" value="testFlower" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CamelGameTests.testLose" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CamelGameTests.testGenie" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MMR" />
       <extension name="coverage">
         <pattern>
@@ -72,13 +72,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="CamelGame" />
       <option name="MAIN_CLASS_NAME" value="CamelGame.CamelGameTests" />
-      <option name="METHOD_NAME" value="testLose" />
+      <option name="METHOD_NAME" value="testGenie" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CamelGameTests.testRest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CamelGameTests.testOasis" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MMR" />
       <extension name="coverage">
         <pattern>
@@ -88,13 +88,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="CamelGame" />
       <option name="MAIN_CLASS_NAME" value="CamelGame.CamelGameTests" />
-      <option name="METHOD_NAME" value="testRest" />
+      <option name="METHOD_NAME" value="testOasis" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CamelGameTests.testWin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CamelGameTests.testSandstorm" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MMR" />
       <extension name="coverage">
         <pattern>
@@ -104,7 +104,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="CamelGame" />
       <option name="MAIN_CLASS_NAME" value="CamelGame.CamelGameTests" />
-      <option name="METHOD_NAME" value="testWin" />
+      <option name="METHOD_NAME" value="testSandstorm" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -112,10 +112,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CamelGameTests.testLose" />
-        <item itemvalue="JUnit.CamelGameTests.testWin" />
-        <item itemvalue="JUnit.CamelGameTests.testHydrate" />
-        <item itemvalue="JUnit.CamelGameTests.testRest" />
+        <item itemvalue="JUnit.CamelGameTests.testFlower" />
+        <item itemvalue="JUnit.CamelGameTests.testSandstorm" />
+        <item itemvalue="JUnit.CamelGameTests.testGenie" />
+        <item itemvalue="JUnit.CamelGameTests.testOasis" />
         <item itemvalue="JUnit.CamelGameTests" />
       </list>
     </recent_temporary>
@@ -132,6 +132,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1063" y="594" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1607120576647">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1063" y="594" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.2560.1400@0.0.2560.1400" timestamp="1607120576647" />
     <state x="1063" y="607" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1607115733280">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -140,22 +144,22 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1607112380426" />
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1607118599436">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1607120798956">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1607118599436" />
-    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1607118599436">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1607120798956" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1607120798956">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1607118599436" />
-    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1607118599436">
+    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1607120798956" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1607120798956">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1607118599436" />
-    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1607118599436">
+    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1607120798956" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1607120798956">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1607118599436" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1607120798956" />
     <state width="2517" height="492" key="GridCell.Tab.1.bottom" timestamp="1606950137578">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
