@@ -1,6 +1,4 @@
-package ProjectStarterCode.controller;
-
-import ProjectStarterCode.model.Camel;
+package CamelGame.controller;
 
 public class HitMessage implements Message {}
 

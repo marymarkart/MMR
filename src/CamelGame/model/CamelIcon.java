@@ -1,4 +1,4 @@
-package ProjectStarterCode.model;
+package CamelGame.model;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,7 +1,7 @@
-package ProjectStarterCode.controller;
+package CamelGame.controller;
 
-import ProjectStarterCode.model.Camel;
-import ProjectStarterCode.view.View;
+import CamelGame.model.Camel;
+import CamelGame.view.View;
 
 import java.util.LinkedList;
 import java.util.List;

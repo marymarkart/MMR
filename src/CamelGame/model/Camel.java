@@ -1,7 +1,7 @@
-package ProjectStarterCode.model;
+package CamelGame.model;
 
 import java.util.Random;
-import ProjectStarterCode.view.StatsView;
+import CamelGame.view.StatsView;
 import javax.swing.*;
 
 public class Camel{

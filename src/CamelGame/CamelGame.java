@@ -1,9 +1,9 @@
-package ProjectStarterCode;
+package CamelGame;
 
-import ProjectStarterCode.controller.Controller;
-import ProjectStarterCode.controller.Message;
-import ProjectStarterCode.model.Camel;
-import ProjectStarterCode.view.View;
+import CamelGame.controller.Controller;
+import CamelGame.controller.Message;
+import CamelGame.model.Camel;
+import CamelGame.view.View;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;

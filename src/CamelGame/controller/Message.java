@@ -1,4 +1,4 @@
-package ProjectStarterCode.controller;
+package CamelGame.controller;
 
 import java.io.Serializable;
 

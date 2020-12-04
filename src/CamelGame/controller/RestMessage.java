@@ -1,4 +1,4 @@
-package ProjectStarterCode.controller;
+package CamelGame.controller;
 
 public class RestMessage implements Message {
 

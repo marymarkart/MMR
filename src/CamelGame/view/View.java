@@ -1,8 +1,8 @@
-package ProjectStarterCode.view;
+package CamelGame.view;
 
-import ProjectStarterCode.controller.*;
-import ProjectStarterCode.model.Camel;
-import ProjectStarterCode.model.CamelIcon;
+import CamelGame.controller.*;
+import CamelGame.model.Camel;
+import CamelGame.model.CamelIcon;
 
 
 import javax.swing.*;

@@ -88,7 +88,7 @@
 //}
 
 
-package ProjectStarterCode.view;
+package CamelGame.view;
 
 import javax.swing.*;
 import java.awt.*;
