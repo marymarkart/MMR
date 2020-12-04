@@ -1,13 +1,21 @@
 package CamelGame.controller;
 
-import CamelGame.model.*;
 import CamelGame.view.View;
 
 import javax.swing.*;
+
+import CamelGame.model.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.BlockingQueue;
+
+/**
+ * Updates value and controls progression of game
+ * @author MMR
+ *
+ */
 
 public class GameInfo{
     String win = "YOU WIN!";
@@ -23,10 +31,20 @@ public class GameInfo{
 
     // the state of the Game/Application
     // information that is needed to repaint the View
+    /**
+     * Constructor that creates a new GameInfo object
+     * @param message gets game action from Controller
+     * @param camel connects Camel to Controller
+     * @param view connects View to Controller
+     * @param queue connects BlockingQueue<Message> to Controller
+     */
     public void GameInfo(String message, Camel camel, View view, BlockingQueue<Message> queue) {
         int lose = 0;
         int winGame = 0;
         int status = 0;
+        /**
+         * controls flow of program based on action received
+         */
         if (message.equals("run")) {
             status = camel.run();
             lose = camel.gameOverLose();
@@ -145,7 +163,12 @@ public class GameInfo{
             System.exit(0);
         }
     }
-        public void gameMessage (String message){
+        
+    /**
+     * Creates a pop-up with a message that ends the game
+     * @param message
+     */
+    public void gameMessage (String message){
         JFrame frame = new JFrame();
         frame.setLayout(new FlowLayout());
         frame.setPreferredSize(new Dimension(400, 100));

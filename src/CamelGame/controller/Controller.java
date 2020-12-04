@@ -1,12 +1,18 @@
 package CamelGame.controller;
 
-import CamelGame.model.Camel;
 import CamelGame.view.View;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
+import CamelGame.model.Camel;
+
+/**
+ * Gets messages from Queue and has mainLoop which controls the game
+ * @author MMR
+ *
+ */
 public class Controller {
     private BlockingQueue<Message> queue;
     private View view; // Direct reference to view
@@ -17,6 +23,12 @@ public class Controller {
     private List<Valve> valves = new LinkedList<Valve>();
     private String action;
 
+    /**
+     * Constructs new Controller object
+     * @param view connects View to Controller
+     * @param camel connects Camel to Controller
+     * @param queue connects BlockingQueue<Message> to Controller
+     */
     public Controller(View view, Camel camel, BlockingQueue<Message> queue) {
         this.view = view;
         this.camel = camel;
@@ -29,6 +41,9 @@ public class Controller {
         valves.add(new DoQuitValve());
     }
 
+    /**
+     * Controls game valve to execute user input
+     */
     public void mainLoop() {
         ValveResponse response = ValveResponse.EXECUTED;
         this.message = null;
@@ -50,6 +65,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Takes message from queue to determine the action to take
+     */
     private void updateGameInfo() {
         gameInfo = new GameInfo();
         if (message.getClass().equals(RunMessage.class)){
@@ -79,6 +97,11 @@ public class Controller {
         public ValveResponse execute(Message message);
     }
 
+    /**
+     * Uses received new game message from queue to decide the path of the message
+     * @author MMR
+     *
+     */
     private class DoNewGameValve implements Valve {
         @Override
         public ValveResponse execute(Message message) {
@@ -92,6 +115,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Uses received run message from queue to decide the path of the message
+     * @author MMR
+     *
+     */
     private class DoRunValve implements Valve {
         @Override
         public ValveResponse execute(Message message) {
@@ -103,6 +131,12 @@ public class Controller {
             return ValveResponse.EXECUTED;
         }
     }
+    
+    /**
+     * Uses received walk message from queue to decide the path of the message
+     * @author MMR
+     *
+     */
     private class DoWalkValve implements Valve {
         @Override
         public ValveResponse execute(Message message) {
@@ -114,6 +148,12 @@ public class Controller {
             return ValveResponse.EXECUTED;
         }
     }
+    
+    /**
+     * Uses received hydrate message from queue to decide the path of the message
+     * @author MMR
+     *
+     */
     private class DoHydrateValve implements Valve {
         @Override
         public ValveResponse execute(Message message) {
@@ -125,6 +165,12 @@ public class Controller {
             return ValveResponse.EXECUTED;
         }
     }
+    
+    /**
+     * Uses received rest message from queue to decide the path of the message
+     * @author MMR
+     *
+     */
     private class DoRestValve implements Valve {
         @Override
         public ValveResponse execute(Message message) {
@@ -136,6 +182,12 @@ public class Controller {
             return ValveResponse.EXECUTED;
         }
     }
+    
+    /**
+     * Uses received quit message from queue to decide the path of the message
+     * @author MMR
+     *
+     */
     private class DoQuitValve implements Valve {
         @Override
         public ValveResponse execute(Message message) {
@@ -148,4 +200,3 @@ public class Controller {
         }
     }
 }
-

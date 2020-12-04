@@ -5,9 +5,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Creates a Flower event where the player comes across a cactus flower
+ * @author MMR
+ *
+ */
 public class Flower implements CamelEvent{
     ImageIcon cactusIcon = new ImageIcon("images/cactusFlower.png");
     @Override
+    /**
+     * Implemented from CamelEvent interface, which updates stamina and creates a pop-up image
+     */
     public void event(Camel camel) {
         camel.rest();
         JFrame flower = new JFrame();

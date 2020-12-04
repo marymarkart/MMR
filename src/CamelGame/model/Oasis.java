@@ -5,10 +5,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Creates a Oasis event where the player comes across an oasis
+ * @author MMR
+ *
+ */
 public class Oasis implements CamelEvent{
     ImageIcon oasisIcon = new ImageIcon("images/oasis3.png");
 
     @Override
+    /**
+     * Implemented from CamelEvent interface, which updates hydration and creates a pop-up image
+     */
     public void event(Camel camel) {
         camel.hydrate();
         JFrame oasis = new JFrame();

@@ -9,4 +9,3 @@ public interface Message extends Serializable {
     String message = "";
 
 }
-

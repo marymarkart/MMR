@@ -1,26 +1,42 @@
 package CamelGame.view;
 
+import javax.swing.*;
+
 import CamelGame.controller.*;
 import CamelGame.model.Camel;
 import CamelGame.model.CamelIcon;
 
-
-import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * Creates user's view of the game
+ * @author MMR
+ *
+ */
 public class View extends JFrame{
     private static JFrame frame = null;
     private BlockingQueue<Message> queue;
     StatsView stats;
     public GameBoard gameBoard;
 
+    /**
+     * Initializes a new View and creates a new frame
+     * @param queue is a BlockingQueue<Message>, where messages are added after a button is clicked 
+     * @param camel is a Camel object reference
+     * @return
+     */
     public static View init(BlockingQueue<Message> queue, Camel camel) {
         // Create object of type view
         frame = new JFrame();
         return new View(queue, camel);
     }
 
+    /**
+     * Constructor that creates a View object with initial conditions and setup
+     * @param queue is a BlockingQueue<Message>, where messages are added after a button is clicked 
+     * @param camel is a Camel object reference
+     */
     private View(BlockingQueue<Message> queue, Camel camel) {
         this.queue = queue;
         // TODO:
@@ -180,6 +196,13 @@ public class View extends JFrame{
     }
 
 
+    /**
+     * Controls when to draw for StatsView, GameBoard, and JFrame
+     * @param frame is the main JFrame
+     * @param camel is the Camel object
+     * @param stats is the StatsView object
+     * @param gameBoard is the GameBoard object
+     */
     public void change(JFrame frame, Camel camel, JPanel stats, GameBoard gameBoard) {
         camel.updateValues(camel.getHydration(), camel.getStamina(), camel.getProgress(), camel.getEnemy());
         frame.repaint();
@@ -187,14 +210,26 @@ public class View extends JFrame{
         gameBoard.repaint();
     }
 
+    /**
+     * Exits JFrame
+     */
     public void dispose() {
         frame.dispose();
     }
 
+    /**
+     * Returns JFrame
+     * @return
+     */
     public JFrame getFrame() {
         return frame;
     }
 }
+/**
+ * Sets the background and camel image on a JLayeredPane
+ * @author MMR
+ *
+ */
 class GameBoard extends JLayeredPane {
     public Image image;
     public Image camelImage;
@@ -202,11 +237,18 @@ class GameBoard extends JLayeredPane {
     JLabel camelLabel = null;
     JLabel backgroundLabel = null;
 
+    /**
+     * Constructor that creates a GameBoard object
+     * @param camel
+     */
     public GameBoard(Camel camel) {
         setFocusable(true);
         this.camel = camel;
     }
 
+    /**
+     * Draws background and camel image
+     */
     public void paint(Graphics g) {
         super.paint(g);
         if (backgroundLabel == null){
@@ -223,6 +265,5 @@ class GameBoard extends JLayeredPane {
         else {
             camelLabel.setIcon(camel.getCamelImage());
         }
-        //g2d.drawImage(camel.getCamelImage(), camel.getX(), camel.getY(), null);
     }
 }

@@ -5,9 +5,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Creates a Sandstorm event where the player comes across a sandstorm
+ * @author MMR
+ *
+ */
 public class Sandstorm implements CamelEvent {
     ImageIcon sandstormIcon = new ImageIcon("images/sandstorm.gif");
     @Override
+    /**
+     * Implemented from CamelEvent interface, which decreases hydration and stamina by half and creates a pop-up image
+     */
     public void event(Camel camel) {
         camel.hydration = camel.getHydration()/2;
         camel.stamina = camel.getStamina()/2;
@@ -31,4 +39,3 @@ public class Sandstorm implements CamelEvent {
         sandstorm.setLocationRelativeTo(null);
     }
 }
-
