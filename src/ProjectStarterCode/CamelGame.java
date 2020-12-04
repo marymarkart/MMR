@@ -8,7 +8,7 @@ import ProjectStarterCode.view.View;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class YourProgramName {
+public class CamelGame {
     private static BlockingQueue<Message> queue = new LinkedBlockingQueue<>();
     private static View view;
     private static Camel camel;

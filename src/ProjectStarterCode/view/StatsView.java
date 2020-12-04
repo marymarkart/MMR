@@ -1,25 +1,13 @@
 package ProjectStarterCode.view;
 
-//import com.sun.codemodel.internal.JLabel;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 
 public class StatsView extends JPanel {
         int n1;
         int n2;
         int n3;
         int n4;
-        int width;
-        int height;
-        int xCoord;
-        int yCoord;
-        Color color;
-        int origWidth;
-        boolean wantLabel;
-        JLabel label;
-        Rectangle2D rectangle;
 
         public StatsView(int n1, int n2, int n3, int n4){
             //initialize variables
@@ -56,38 +44,42 @@ public class StatsView extends JPanel {
             g2.draw(rec1);
             g2.fill(rec1);
 
+            g2.setColor(Color.darkGray);
+            Rectangle recFullH = new Rectangle(90, 23, 2, 7 );
+            g2.draw(recFullH);
+            g2.fill(recFullH);
+
             //Rectangle for n2
             g2.setColor(Color.GREEN);
             Rectangle rec2 = new Rectangle(x2, 55, n2*8, 7);
             g2.draw(rec2);
             g2.fill(rec2);
 
+            //Rectangle for full stamina
+            g2.setColor(Color.darkGray);
+            Rectangle recFullS = new Rectangle(90, 55, 2, 7 );
+            g2.draw(recFullS);
+            g2.fill(recFullS);
+
             //Rectangle for n3
             g2.setColor(Color.BLUE);
-            Rectangle rec3 = new Rectangle(x3, 87, (int) (n3*0.3), 7);
+            Rectangle rec3 = new Rectangle(x3, 87, (int) (n3*0.32), 7);
             g2.draw(rec3);
             g2.fill(rec3);
 
-            //Rectangle for n3
+            //Rectangle for winning distance
+            g2.setColor(Color.darkGray);
+            Rectangle recWin = new Rectangle(90, 87, 2, 7 );
+            g2.draw(recWin);
+            g2.fill(recWin);
 
+
+            //Rectangle for n4
             g2.setColor(Color.RED);
-            Rectangle rec4 = new Rectangle(x4, 119, (int) (n4*0.3), 7);
+            Rectangle rec4 = new Rectangle((int)(n4*0.32+10 - 2), 87, 2, 7);
             g2.draw(rec4);
             g2.fill(rec4);
 
         }
-
-    public int getn1() {
-            return n1;
-    }
-    public int getn2() {
-        return n2;
-    }
-    public int getn3() {
-        return n3;
-    }
-    public int getn4() {
-        return n4;
-    }
 }
 

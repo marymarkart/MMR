@@ -9,14 +9,13 @@ public class Sandstorm implements CamelEvent {
     ImageIcon sandstormIcon = new ImageIcon("images/sandstorm.gif");
     @Override
     public void event(Camel camel) {
-        System.out.println("You got caught in a sandstorm");
         camel.hydration = camel.getHydration()/2;
         camel.stamina = camel.getStamina()/2;
         JFrame sandstorm = new JFrame();
         sandstorm.setLayout(new FlowLayout());
         sandstorm.setPreferredSize(new Dimension(500, 200));
-        JLabel winText = new JLabel("You got caught in a sandstorm. You're health and stamina have gone down!");
-        sandstorm.add(winText);
+        JLabel sandText = new JLabel("You got caught in a sandstorm. You're health and stamina have gone down!");
+        sandstorm.add(sandText);
         sandstorm.add(new JLabel(sandstormIcon));
         JButton ok = new JButton("OK");
         sandstorm.add(ok);

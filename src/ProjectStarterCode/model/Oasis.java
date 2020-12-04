@@ -10,13 +10,12 @@ public class Oasis implements CamelEvent{
 
     @Override
     public void event(Camel camel) {
-        System.out.print("You found an oasis");
         camel.hydrate();
         JFrame oasis = new JFrame();
         oasis.setLayout(new FlowLayout());
         oasis.setPreferredSize(new Dimension(400, 250));
-        JLabel winText = new JLabel("You found an oasis! You're hydration has been restored!");
-        oasis.add(winText);
+        JLabel oasisText = new JLabel("You found an oasis! You're hydration has been restored!");
+        oasis.add(oasisText);
         oasis.add(new JLabel(oasisIcon));
         JButton ok = new JButton("OK");
         oasis.add(ok);

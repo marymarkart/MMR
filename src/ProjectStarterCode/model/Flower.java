@@ -9,7 +9,6 @@ public class Flower implements CamelEvent{
     ImageIcon cactusIcon = new ImageIcon("images/cactusFlower.png");
     @Override
     public void event(Camel camel) {
-        System.out.println("You found a special cactus flower");
         camel.rest();
         JFrame flower = new JFrame();
         flower.setLayout(new FlowLayout());

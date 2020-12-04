@@ -15,6 +15,7 @@ public class CamelIcon extends JPanel {
         y = 265;
     }
 
+
     public void restoreImage() {
         this.still = camel1.getImage();
     }

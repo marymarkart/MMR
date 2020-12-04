@@ -1,12 +1,7 @@
 package ProjectStarterCode.model;
 
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
 import ProjectStarterCode.view.StatsView;
-
 import javax.swing.*;
 
 public class Camel{
@@ -23,7 +18,6 @@ public class Camel{
     ImageIcon rest = new ImageIcon("images/camelRest.gif");
     ImageIcon camel1 = new ImageIcon("images/camel1.png");
     ImageIcon currentStateImage = camel1;
-
 
     public Camel() {
         this.hydration = 10;
@@ -47,11 +41,11 @@ public class Camel{
     }
 
     public void enemyMoves(){
-        this.enemy += 6;
+        this.enemy += 8;
     }
 
     public int run(){
-        number = rand.nextInt(20) + 5;
+        number = rand.nextInt(15) + 5;
         progress += number;
         hydration -= 2;
         stamina -= 2;
@@ -59,8 +53,6 @@ public class Camel{
         updateValues(hydration, stamina, progress, enemy);
         currentStateImage = run;
         return number;
-
-
     }
 
     public int walk(){
@@ -91,25 +83,22 @@ public class Camel{
         return stamina;
     }
 
-    public int getProgess(){
+    public int getProgress(){
         return progress;
     }
 
     public int gameOverLose(){
         if (stamina <= 0 && hydration <= 0){
-            System.out.println("You ran out of stamina and water");
             return 1;
         }
         if (stamina <= 0){
-            System.out.println("You ran out of stamina");
+
             return 2;
         }
         if (hydration <= 0){
-            System.out.println("You ran out of water");
             return 3;
         }
         if (enemy >= progress){
-            System.out.println("The enemy caught you");
             return 4;
         }
         return 0;
@@ -117,7 +106,6 @@ public class Camel{
 
     public int gameOverWin(){
         if (progress >= 250 && stamina > 0 && hydration > 0 && progress > enemy){
-            System.out.println("You win");
             return 1;
         }
         return 0;

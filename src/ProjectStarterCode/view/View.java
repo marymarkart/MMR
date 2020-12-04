@@ -24,7 +24,7 @@ public class View extends JFrame{
     private View(BlockingQueue<Message> queue, Camel camel) {
         this.queue = queue;
         // TODO:
-        // you should initalize JFrame and show it,
+        // you should initialize JFrame and show it,
         // JFrame should be able to add Messages to queue
         // JFrame can be in a separate class or created JFrame with all the elements in this class
         // or you can make View a subclass of JFrame by extending it
@@ -59,7 +59,7 @@ public class View extends JFrame{
         JPanel statsView;
         stats = camel.getsView();
         statsView = stats;
-        statsView.setLayout(new GridLayout(8,1));
+        statsView.setLayout(new GridLayout(8,2));
         statsView.setSize(new Dimension(50,50));
         statsView.setVisible(true);
         JLabel hyd = new JLabel("Hydration");
@@ -67,8 +67,10 @@ public class View extends JFrame{
         JLabel stam = new JLabel("Stamina");
         JLabel spacer2 = new JLabel("");
         JLabel prog = new JLabel("Progress");
+        prog.setForeground(Color.blue);
         JLabel spacer3 = new JLabel("");
-        JLabel enem = new JLabel("Enemy Progress");
+        JLabel enem = new JLabel("Bandits");
+        enem.setForeground(Color.red);
         statsView.add(hyd);
         statsView.add(spacer);
         statsView.add(stam);
@@ -179,7 +181,7 @@ public class View extends JFrame{
 
 
     public void change(JFrame frame, Camel camel, JPanel stats, GameBoard gameBoard) {
-        camel.updateValues(camel.getHydration(), camel.getStamina(), camel.getProgess(), camel.getEnemy());
+        camel.updateValues(camel.getHydration(), camel.getStamina(), camel.getProgress(), camel.getEnemy());
         frame.repaint();
         stats.repaint();
         gameBoard.repaint();
